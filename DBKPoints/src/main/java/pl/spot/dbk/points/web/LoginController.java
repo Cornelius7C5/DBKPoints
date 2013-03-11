@@ -11,7 +11,7 @@ public class LoginController {
 
     @RequestMapping(value = "failed", method = RequestMethod.GET)
     public ModelAndView prepareLoginFailedForm() {
-        ModelAndView m = new ModelAndView("loginfailed");
+        ModelAndView m = new ModelAndView("ss/failed");
         return m;
     }
 
