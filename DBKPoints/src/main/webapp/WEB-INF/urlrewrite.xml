@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<!-- Configuration file for UrlRewriteFilter http://www.tuckey.org/urlrewrite/ -->
+<urlrewrite>
+  <rule>
+    <condition type="user-in-role">ROLE_SPRZEDAWCA</condition>
+    <from>/login/success</from>
+    <to type="redirect">seller/</to>
+  </rule>
+  <rule>
+    <condition type="user-in-role">ROLE_ADMINISTRATOR</condition>
+    <from>/login/success</from>
+    <to type="redirect">admin/</to>
+  </rule>
+  <rule>  
+    <condition type="user-in-role">ROLE_UCZESTNIK</condition>
+    <from>/login/success</from>
+    <to type="redirect">user/</to>
+  </rule>
+  <rule>
+    <condition type="user-in-role">ROLE_ANONYMOUS</condition>
+    <from>/*</from>
+    <to type="redirect">login/</to>
+  </rule>
+</urlrewrite>
