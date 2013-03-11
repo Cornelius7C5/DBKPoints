@@ -17,7 +17,7 @@ public class LoginController {
 
     @RequestMapping(value = "success", method = RequestMethod.GET)
     public ModelAndView prepareLoginSuccessForm() {
-        return new ModelAndView();
+        return new ModelAndView("welcome");
     }
 
 }
