@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+a:link {
+	color: red;
+}
+
+a:visited {
+	color: #aa0000;
+}
+
+a:hover {
+	color: white;
+	background-color: red;
+}
+
+a:active {
+	color: #0000FF;
+}

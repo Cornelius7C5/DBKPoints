@@ -1,0 +1,9 @@
+<decorators defaultdir="/WEB-INF/jsp/master">
+
+    <decorator
+        name="master"
+        page="master.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+</decorators>

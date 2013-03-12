@@ -1,6 +1,6 @@
 package pl.spot.dbk.points.server.hib;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "USERS")
@@ -28,11 +26,11 @@ public class User {
     @Column(name = "surname")
     private String surname;
     @Column(name = "last_login")
-    private Date last_login;
+    private Timestamp last_login;
     @Column(name = "last_points")
-    private Date last_points;
+    private Timestamp last_points;
     @Column(name = "last_order_realization")
-    private Date last_order_realization;
+    private Timestamp last_order_realization;
     @Column(name = "blocked_points")
     private int blocked_points;
 
@@ -85,27 +83,27 @@ public class User {
         this.surname = surname;
     }
 
-    public Date getLast_login() {
+    public Timestamp getLast_login() {
         return last_login;
     }
 
-    public void setLast_login(Date last_login) {
+    public void setLast_login(Timestamp last_login) {
         this.last_login = last_login;
     }
 
-    public Date getLast_points() {
+    public Timestamp getLast_points() {
         return last_points;
     }
 
-    public void setLast_points(Date last_points) {
+    public void setLast_points(Timestamp last_points) {
         this.last_points = last_points;
     }
 
-    public Date getLast_order_realization() {
+    public Timestamp getLast_order_realization() {
         return last_order_realization;
     }
 
-    public void setLast_order_realization(Date last_order_realization) {
+    public void setLast_order_realization(Timestamp last_order_realization) {
         this.last_order_realization = last_order_realization;
     }
 

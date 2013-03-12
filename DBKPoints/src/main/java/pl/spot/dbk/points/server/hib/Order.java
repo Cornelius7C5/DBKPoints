@@ -1,6 +1,6 @@
 package pl.spot.dbk.points.server.hib;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -20,7 +20,7 @@ public class Order {
     @Column(name = "id_o")
     private int id_o;
     @Column(name = "date")
-    private Date date;
+    private Timestamp date;
 
     @ManyToOne
     @JoinColumn(name = "id_user", referencedColumnName = "id_u")
@@ -43,11 +43,11 @@ public class Order {
         this.id_o = id_o;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

@@ -1,5 +1,8 @@
 package pl.spot.dbk.points.web;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,7 +42,8 @@ public class LoginController {
         // "redirect:/admin/"); }
 
         User u = userService.get(userDetails.getUsername());
-
+        u.setLast_login(new Timestamp((new java.util.Date()).getTime()));
+        userService.update(u);
         switch (u.getRole().getId_r()) {
         case 1:
             return new ModelAndView("redirect:" + Constants.USER);
