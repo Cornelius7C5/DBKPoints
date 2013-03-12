@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+@font-face {
+	font-family: helvetica;
+	src: url('Helvetica.ttf');
+}
+
+body {
+	font-family: helvetica;
+}
+
+#wrapper {
+	width: 800px; margin 0 auto;
+	background-color: #eee;
+	color: black;
+	border-left: 2px solid red;
+	border-right: 2px solid red;
+}
+
+a:link {
+	color: red;
+}
+
+a:visited {
+	color: #aa0000;
+}
+
+a:hover {
+	color: white;
+	background-color: red;
+}
+
+a:active {
+	color: #0000FF;
+}
