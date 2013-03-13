@@ -3,6 +3,7 @@ package pl.spot.dbk.points.server.hib;
 import java.sql.Timestamp;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,9 +19,8 @@ import javax.persistence.Transient;
 @Table(name = "USERS")
 public class User {
 
-    
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_u;
     @Column(name = "password")
     private String password;
@@ -36,7 +36,6 @@ public class User {
     private Timestamp last_order_realization;
     @Column(name = "blocked_points")
     private int blocked_points;
-    
 
     @ManyToOne
     @JoinColumn(name = "id_role", referencedColumnName = "id_r")
@@ -47,14 +46,15 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "id_register_point", referencedColumnName = "id_sp")
     SalePoint registerPoint;
+
     @Transient
     private int registerPoint_id;
-    
+
     @ManyToOne
     @JoinColumn(name = "id_work_sp", referencedColumnName = "id_sp")
     SalePoint workSalePoint;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     Set<Invoice> invoices;
 
     public User() {}
@@ -130,9 +130,9 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
-    
-    public void setRole(String role_id){
-        
+
+    public void setRole(String role_id) {
+
     }
 
     public SalePoint getRegisterPoint() {
@@ -177,6 +177,12 @@ public class User {
 
     public boolean isAdmin() {
         return getRole().getId_r() == 111;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id_u=" + id_u + ", password=" + password + ", name=" + name + ", surname=" + surname + ", role="
+                + role + "]";
     }
 
 }

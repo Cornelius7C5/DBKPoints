@@ -50,4 +50,9 @@ public class Basket {
         this.amount = amount;
     }
 
+    @Override
+    public String toString() {
+        return "Basket [id_order=" + id_order + ", id_item=" + id_item + ", amount=" + amount + "]";
+    }
+
 }

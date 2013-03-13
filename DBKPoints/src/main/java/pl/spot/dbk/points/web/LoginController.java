@@ -2,8 +2,6 @@ package pl.spot.dbk.points.web;
 
 import java.sql.Timestamp;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.User;
+import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.UserService;
 
 @Controller
@@ -25,6 +24,9 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    SalePointService spService;
+
     @RequestMapping(value = "failed", method = RequestMethod.GET)
     public ModelAndView prepareLoginFailedForm() {
         ModelAndView m = new ModelAndView("ss/failed");
@@ -32,20 +34,17 @@ public class LoginController {
     }
 
     @RequestMapping(value = "success", method = RequestMethod.GET)
-    public ModelAndView prepareLoginSuccessForm(HttpServletRequest request, HttpServletResponse response,HttpSession session) {
+    public ModelAndView prepareLoginSuccessForm(HttpSession session) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        // System.out.println("HELLO! " + userDetails.getAuthorities().toString() + "?"
-        // + userDetails.getAuthorities().toString().contains("ADMINISTRATOR"));
-        //
-        // if (userDetails.getAuthorities().toString().contains("ADMINISTRATOR")) { return new ModelAndView(
-        // "redirect:/admin/"); }
 
         User u = userService.get(userDetails.getUsername());
         u.setLast_login(new Timestamp((new java.util.Date()).getTime()));
+        spService.save(u.getRegisterPoint());
+        spService.save(u.getWorkSalePoint());
         userService.update(u);
+
         session.setAttribute(Constants.USER, u);
-        
+
         switch (u.getRole().getId_r()) {
         case 1:
             return new ModelAndView("redirect:" + Constants.USER);

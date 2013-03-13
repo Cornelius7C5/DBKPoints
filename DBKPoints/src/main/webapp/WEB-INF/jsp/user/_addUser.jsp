@@ -18,6 +18,12 @@
         <td><form:input path="surname" /></td>
       </tr>
       <tr>
+        <td><form:label path="password">Hasło:</form:label></td>
+      </tr>
+      <tr>
+        <td><form:password path="password"  /></td>
+      </tr>
+      <tr>
         <td><form:label path="role_id">Rola:</form:label></td>
       </tr>
       <tr>
@@ -26,7 +32,7 @@
           </form:select></td>
       </tr>
       <tr>
-        <td><form:label path="registerPoint_id">Rola:</form:label></td>
+        <td><form:label path="registerPoint_id">Punkt Sprzedaży:</form:label></td>
       </tr>
       <tr>
         <td><form:select path="registerPoint_id" size="1">

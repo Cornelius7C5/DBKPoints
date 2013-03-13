@@ -24,7 +24,11 @@ public class HibSalePointService extends AbstractHibService implements SalePoint
     @Override
     public void create(SalePoint sp) {
         session().save(sp);
+    }
 
+    @Override
+    public void save(SalePoint sp) {
+        session().save(sp);
     }
 
 }

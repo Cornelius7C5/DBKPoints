@@ -19,6 +19,7 @@ public class Order {
     @GeneratedValue
     @Column(name = "id_o")
     private int id_o;
+
     @Column(name = "date")
     private Timestamp date;
 
@@ -29,6 +30,10 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "id_o_salepoint", referencedColumnName = "id_sp")
     private SalePoint salePoint;
+
+    @ManyToOne
+    @JoinColumn(name = "id_status", referencedColumnName = "id_s")
+    private Status status;
 
     @OneToMany(mappedBy = "id_order")
     private Set<Basket> basketItems;
@@ -73,6 +78,19 @@ public class Order {
 
     public void setBasketItems(Set<Basket> basketItems) {
         this.basketItems = basketItems;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order [id_o=" + id_o + ", date=" + date + ", user=" + user + "]";
     }
 
 }

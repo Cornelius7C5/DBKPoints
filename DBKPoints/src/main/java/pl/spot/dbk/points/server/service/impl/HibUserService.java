@@ -34,7 +34,12 @@ public class HibUserService extends AbstractHibService implements UserService {
     }
 
     @Override
-    public void create(User user) {
-        session().save(user);
+    public int create(User user) {
+        return (Integer) session().save(user);
+    }
+
+    @Override
+    public void clearSession() {
+        session().clear();
     }
 }

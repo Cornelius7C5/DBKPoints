@@ -1,20 +1,17 @@
 package pl.spot.dbk.points.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.spot.dbk.points.Constants;
-import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.RoleService;
 import pl.spot.dbk.points.server.service.UserService;
 
 @Controller
-@RequestMapping(value = "/admin/**")
+@RequestMapping(value = Constants.ADMIN + "**")
 public class AdminViewController {
 
     @Autowired
@@ -25,17 +22,12 @@ public class AdminViewController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView prepareMainView() {
         ModelAndView mv = new ModelAndView(Constants.ADMIN + "main");
-        User u = userService.get((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-
-        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView prepareUsersView() {
-        
-        ModelAndView mv = new ModelAndView("redirect:/user/main");
-//        mv.addObject("isAdmin",userService.get((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).isAdmin());
+        ModelAndView mv = new ModelAndView("redirect:" + Constants.USER + "main");
         return mv;
     }
 
@@ -46,7 +38,8 @@ public class AdminViewController {
 
     @RequestMapping(value = "/sp", method = RequestMethod.GET)
     public ModelAndView prepareSalePointsView() {
-        return null;
+        ModelAndView mv = new ModelAndView("redirect:" + Constants.SP + "main");
+        return mv;
     }
 
     @RequestMapping(value = "/sales", method = RequestMethod.GET)

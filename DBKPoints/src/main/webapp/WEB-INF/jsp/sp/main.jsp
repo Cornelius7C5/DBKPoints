@@ -5,21 +5,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <html>
 <head>
-<title>Panel Administratora - Użytkownicy</title>
+<title>Panel Administratora - Punkty sprzedaży</title>
 <meta name="section" content="About" />
 </head>
 <body>
   <p>
     <c:if test="${ok}">
-      <c:out value="Dodano użytkownika. Nr karty: "></c:out>
-      <c:out value="${newUserId}"></c:out>
+      <c:out value="Dodano użytkownika."></c:out>
     </c:if>
   </p>
   <%
       User u = (User) session.getAttribute(Constants.USER);
       if (u.isAdmin()) {
   %>
-  <jsp:include page="_addUser.jsp"></jsp:include>
+  <jsp:include page="_addSp.jsp"></jsp:include>
   <%
       }
   %>

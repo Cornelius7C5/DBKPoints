@@ -1,5 +1,7 @@
 package pl.spot.dbk.points.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,7 +17,7 @@ import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.UserService;
 
 @Controller
-@RequestMapping(value = "/user/**")
+@RequestMapping(value = Constants.USER + "**")
 public class UserController {
 
     @Autowired
@@ -33,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "main", method = RequestMethod.GET)
-    public ModelAndView prepareView(@ModelAttribute("user") User user, ModelMap model) {
+    public ModelAndView prepareView(HttpSession session) {
         ModelAndView mv = new ModelAndView(Constants.USER + "main");
         mv.addObject("roles", roleService.list());
         mv.addObject("sps", spService.list());
@@ -45,9 +47,11 @@ public class UserController {
         ModelAndView mv = new ModelAndView(Constants.USER + "main");
         user.setRole(roleService.getRole(user.getRole_id()));
         user.setRegisterPoint(spService.get(user.getRegisterPoint_id()));
-        userService.create(user);
 
         mv.addObject("ok", true);
+        mv.addObject("newUserId", userService.create(user));
+        mv.addObject("roles", roleService.list());
+        mv.addObject("sps", spService.list());
         return mv;
     }
 

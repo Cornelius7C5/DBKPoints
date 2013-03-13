@@ -11,6 +11,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "INVOICES")
 public class Invoice {
+    @Override
+    public String toString() {
+        return "Invoice [id_i=" + id_i + ", invoiceSalePoint=" + invoiceSalePoint + ", user=" + user + "]";
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "id_i")

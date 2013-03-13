@@ -59,4 +59,9 @@ public class BasketId implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "BasketId [id_order=" + id_order + ", id_item=" + id_item + "]";
+    }
+
 }

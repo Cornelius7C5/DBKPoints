@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -13,6 +15,7 @@ import javax.persistence.Table;
 public class SalePoint {
     @Id
     @Column(name = "id_sp")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_sp;
     @Column(name = "name")
     private String name;
@@ -77,6 +80,11 @@ public class SalePoint {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
 }

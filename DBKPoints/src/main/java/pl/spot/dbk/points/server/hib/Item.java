@@ -58,4 +58,9 @@ public class Item {
         this.basketsWithThisItem = basketsWithThisItem;
     }
 
+    @Override
+    public String toString() {
+        return "Item [id_i=" + id_i + ", name=" + name + ", cost=" + cost + "]";
+    }
+
 }
