@@ -7,13 +7,13 @@
 </head>
 <body>
   <p>Witaj ${hello}</p>
-  <a href="/admin/sell">Sprzedaże</a>
+  <a href="sell">Sprzedaże</a>
   <br />
-  <a href="/admin/sell">Uczestnicy</a>
+  <a href="users">Uczestnicy</a>
   <br />
-  <a href="/admin/sell">Nagrody</a>
+  <a href="prizes">Nagrody</a>
   <br />
-  <a href="/admin/sell">Oddziały</a>
+  <a href="sp">Oddziały</a>
   <br />
 </body>
 </html>

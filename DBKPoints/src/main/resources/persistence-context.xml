@@ -39,6 +39,8 @@
     </bean>
 
     <bean class="pl.spot.dbk.points.server.service.impl.HibUserService" />
+    <bean class="pl.spot.dbk.points.server.service.impl.HibRoleService" />
+    <bean class="pl.spot.dbk.points.server.service.impl.HibSalePointService" />
 
     <!-- Hibernate session factory -->
     <bean

@@ -1,10 +1,10 @@
 package pl.spot.dbk.points.web;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.UserService;
-import pl.spot.dbk.points.web.util.Constants;
 
 @Controller
 @RequestMapping("/login/**")
@@ -32,7 +32,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "success", method = RequestMethod.GET)
-    public ModelAndView prepareLoginSuccessForm(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView prepareLoginSuccessForm(HttpServletRequest request, HttpServletResponse response,HttpSession session) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // System.out.println("HELLO! " + userDetails.getAuthorities().toString() + "?"
@@ -44,6 +44,8 @@ public class LoginController {
         User u = userService.get(userDetails.getUsername());
         u.setLast_login(new Timestamp((new java.util.Date()).getTime()));
         userService.update(u);
+        session.setAttribute(Constants.USER, u);
+        
         switch (u.getRole().getId_r()) {
         case 1:
             return new ModelAndView("redirect:" + Constants.USER);

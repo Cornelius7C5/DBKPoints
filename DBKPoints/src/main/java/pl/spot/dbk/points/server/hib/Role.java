@@ -48,4 +48,9 @@ public class Role {
         this.specificRoleUsers = specificRoleUsers;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

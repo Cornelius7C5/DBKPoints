@@ -1,8 +1,5 @@
 package pl.spot.dbk.points.server.service.impl;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,14 +7,7 @@ import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.UserService;
 
 @Transactional
-public class HibUserService implements UserService {
-
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    private Session session() {
-        return sessionFactory.getCurrentSession();
-    }
+public class HibUserService extends AbstractHibService implements UserService {
 
     @Override
     public User get(Object id) {
@@ -38,9 +28,13 @@ public class HibUserService implements UserService {
         try {
             session().update(user);
         } catch (Exception e) {
-
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void create(User user) {
+        session().save(user);
     }
 }

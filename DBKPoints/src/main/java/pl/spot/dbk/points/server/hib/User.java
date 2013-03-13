@@ -6,18 +6,21 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "USERS")
 public class User {
 
+    
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id_u;
     @Column(name = "password")
     private String password;
@@ -33,15 +36,20 @@ public class User {
     private Timestamp last_order_realization;
     @Column(name = "blocked_points")
     private int blocked_points;
+    
 
     @ManyToOne
     @JoinColumn(name = "id_role", referencedColumnName = "id_r")
     Role role;
+    @Transient
+    private String role_id;
 
     @ManyToOne
     @JoinColumn(name = "id_register_point", referencedColumnName = "id_sp")
     SalePoint registerPoint;
-
+    @Transient
+    private int registerPoint_id;
+    
     @ManyToOne
     @JoinColumn(name = "id_work_sp", referencedColumnName = "id_sp")
     SalePoint workSalePoint;
@@ -122,6 +130,10 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+    
+    public void setRole(String role_id){
+        
+    }
 
     public SalePoint getRegisterPoint() {
         return registerPoint;
@@ -145,6 +157,26 @@ public class User {
 
     public void setInvoices(Set<Invoice> invoices) {
         this.invoices = invoices;
+    }
+
+    public String getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(String role_id) {
+        this.role_id = role_id;
+    }
+
+    public int getRegisterPoint_id() {
+        return registerPoint_id;
+    }
+
+    public void setRegisterPoint_id(int registerPoint_id) {
+        this.registerPoint_id = registerPoint_id;
+    }
+
+    public boolean isAdmin() {
+        return getRole().getId_r() == 111;
     }
 
 }
