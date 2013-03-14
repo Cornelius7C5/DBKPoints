@@ -17,7 +17,7 @@ public class HelloWorldController {
      * @return view with name 'hello' */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView home() {
-        return new ModelAndView("redirect:" + Constants.LOGIN);
+        return new ModelAndView("redirect:" + Constants.LOGIN_SUCCESS);
     }
 
 }

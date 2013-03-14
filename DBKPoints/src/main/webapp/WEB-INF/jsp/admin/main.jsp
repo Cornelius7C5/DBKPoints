@@ -7,11 +7,11 @@
 </head>
 <body>
   <p>Witaj ${hello}</p>
-  <a href="sell">Sprzedaże</a>
+  <a href="sales">Sprzedaże</a>
   <br />
   <a href="users">Uczestnicy</a>
   <br />
-  <a href="prizes">Nagrody</a>
+  <a href="item">Nagrody</a>
   <br />
   <a href="sp">Oddziały</a>
   <br />

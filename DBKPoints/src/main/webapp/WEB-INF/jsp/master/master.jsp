@@ -9,7 +9,8 @@
 <body>
   <div id="wrapper">
     <div id="header">
-      <img alt="Logo" src="http://lorempixel.com/120/120/technics/4/DBKPoints/">
+      <a href="<c:url value="/"/>"><img title="Strona Główna" alt="Logo" src="http://lorempixel.com/120/120/technics/4/DBKPoints/"></a>
+      <a href="<c:url value="/logout" />" > Wyloguj</a>
     </div>
     <div id="content">
       <dec:body />

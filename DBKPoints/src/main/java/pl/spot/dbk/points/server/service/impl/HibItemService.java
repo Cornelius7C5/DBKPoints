@@ -13,9 +13,7 @@ public class HibItemService extends AbstractHibService implements ItemService {
 
     @Override
     public void create(Item item) {
-        Transaction tx = session().beginTransaction();
         session().save(item);
-        tx.commit();
     }
 
     @SuppressWarnings("unchecked")

@@ -35,6 +35,7 @@ public class SalePointController {
         ModelAndView mv = new ModelAndView(Constants.SP + "main");
         spService.create(sp);
         mv.addObject("ok", true);
+        mv.addObject("newSP", sp.getName());
         return mv;
     }
 

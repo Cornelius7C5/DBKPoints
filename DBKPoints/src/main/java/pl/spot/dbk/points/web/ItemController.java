@@ -35,6 +35,9 @@ public class ItemController {
         ModelAndView mv = new ModelAndView(Constants.ITEM + "main");
         itemService.create(item);
         mv.addObject("ok", true);
+        mv.addObject("newItemName", item.getName());
+        mv.addObject("newItemCost", item.getCost());
+
         return mv;
     }
 

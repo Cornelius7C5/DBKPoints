@@ -17,6 +17,9 @@
             authentication-failure-url="/login/failed"
             default-target-url="/login/success"
             always-use-default-target="true" />
+        <logout
+            logout-success-url="/welcome"
+            logout-url="/logout" />
         <!-- login-page="/" -->
     </http>
 

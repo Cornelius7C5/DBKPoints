@@ -26,7 +26,7 @@ public class HibUserService extends AbstractHibService implements UserService {
     @Override
     public boolean update(User user) {
         try {
-            session().update(user);
+            session().merge(user);
         } catch (Exception e) {
             return false;
         }

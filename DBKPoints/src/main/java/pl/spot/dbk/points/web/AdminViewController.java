@@ -31,9 +31,10 @@ public class AdminViewController {
         return mv;
     }
 
-    @RequestMapping(value = "/prizes", method = RequestMethod.GET)
+    @RequestMapping(value = "/item", method = RequestMethod.GET)
     public ModelAndView preparePrizesView() {
-        return null;
+        ModelAndView mv = new ModelAndView("redirect:" + Constants.ITEM + "main");
+        return mv;
     }
 
     @RequestMapping(value = "/sp", method = RequestMethod.GET)

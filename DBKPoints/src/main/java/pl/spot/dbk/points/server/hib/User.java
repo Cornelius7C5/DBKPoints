@@ -131,10 +131,6 @@ public class User {
         this.role = role;
     }
 
-    public void setRole(String role_id) {
-
-    }
-
     public SalePoint getRegisterPoint() {
         return registerPoint;
     }
