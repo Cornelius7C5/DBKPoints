@@ -4,6 +4,10 @@
 <head>
 <title>DBK Points - <dec:title /></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<jsp:include page=""></jsp:include>
+<style type="text/css">
+@import url("../../css/main.css");
+</style>
 <link href="<c:url value="/css/main.css"/>" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -15,8 +19,8 @@
     <div id="content">
       <dec:body />
     </div>
-    <div id="Footer">
-      <p>CopyrightbyKO</p>
+    <div id="footer">
+      <p>Copyright by KO</p>
     </div>
   </div>
 </body>

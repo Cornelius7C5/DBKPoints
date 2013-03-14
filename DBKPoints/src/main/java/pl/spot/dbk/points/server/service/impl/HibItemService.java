@@ -2,7 +2,6 @@ package pl.spot.dbk.points.server.service.impl;
 
 import java.util.List;
 
-import org.hibernate.Transaction;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.spot.dbk.points.server.hib.Item;

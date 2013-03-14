@@ -1,8 +1,12 @@
 package pl.spot.dbk.points.server.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
+import pl.spot.dbk.points.MetaObject;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.UserService;
 
@@ -41,5 +45,22 @@ public class HibUserService extends AbstractHibService implements UserService {
     @Override
     public void clearSession() {
         session().clear();
+    }
+
+    @Override
+    public List<MetaObject> listAsMetaObject() throws Exception {
+        ArrayList<MetaObject> ret = new ArrayList<MetaObject>();
+        
+        for(User u : list()){
+            ret.add(u.getMetaObject());
+        }
+        
+        return ret;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<User> list() {
+        return session().createCriteria(User.class).list();
     }
 }

@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+
+@font-face {
+	font-family: helvetica;
+	src: url('Helvetica.ttf');
+}
+
+body {
+	font-family: helvetica;
+}
+
+#wrapper {
+	width: 900px;
+	color: black;
+	border-left: 2px solid red;
+	border-right: 2px solid red;
+}
+
+#wrapper,#content,#footer,#header {
+	margin: 0 auto;
+}
+
+td a:visited,td a:link,td a:hover,td a:active {
+	text-decoration: none;
+	color: black;
+	background-color: transparent;
+}
+
+a:link {
+	color: red;
+}
+
+a:visited {
+	color: #aa0000;
+}
+
+a:hover {
+	color: white;
+	background-color: red;
+}
+
+a:active {
+	color: #0000FF;
+}
+
+td {
+	border-left: 1px solid red;
+	border-right: 1px solid red;
+	margin: 0;
+	padding: 5px;
+	border-bottom: 1px solid maroon;	
+}
+
+tr {
+	border-top: 1px solid maroon;
+}
+
+tr:hover{
+	background-color: maroon;
+}
+
+tr:nth-child(even) {
+	background: #fdd
+}
+
+th {
+	background-color: #eee;
+}

@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import pl.spot.dbk.points.MetaObject;
+
 @Entity
 @Table(name = "USERS")
 public class User {
@@ -181,4 +183,16 @@ public class User {
                 + role + "]";
     }
 
+    public MetaObject getMetaObject() throws Exception {
+        MetaObject mo = new MetaObject();
+        mo.setId(this.id_u);
+        mo.setName(this.name + " " + this.surname);
+        mo.addInfo("Miejsce rejestracji", this.registerPoint.getName());
+        mo.addInfo("Ostatnie logowanie", this.last_login != null ? this.last_login.toString() : "Brak danych");
+        mo.addInfo("Ostatnie punkty", this.last_points != null ? this.last_login.toString() : "Brak danych");
+        mo.addInfo("Ostatnie zamówienie",
+                this.last_order_realization != null ? this.last_login.toString() : "Brak danych");
+        return mo;
+
+    }
 }
