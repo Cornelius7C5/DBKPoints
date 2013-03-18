@@ -97,6 +97,10 @@ public class User {
         return last_login;
     }
 
+    public String getLast_loginAsString() {
+        return last_login == null ? "Brak danych" : last_login.toString();
+    }
+
     public void setLast_login(Timestamp last_login) {
         this.last_login = last_login;
     }
@@ -105,12 +109,20 @@ public class User {
         return last_points;
     }
 
+    public String getLast_pointsAsString() {
+        return last_points == null ? "Brak danych" : last_points.toString();
+    }
+
     public void setLast_points(Timestamp last_points) {
         this.last_points = last_points;
     }
 
     public Timestamp getLast_order_realization() {
         return last_order_realization;
+    }
+
+    public String getLast_order_realizationAsString() {
+        return last_order_realization == null ? "Brak danych" : last_order_realization.toString();
     }
 
     public void setLast_order_realization(Timestamp last_order_realization) {
@@ -184,15 +196,18 @@ public class User {
     }
 
     public MetaObject getMetaObject() throws Exception {
-        MetaObject mo = new MetaObject();
-        mo.setId(this.id_u);
-        mo.setName(this.name + " " + this.surname);
+        MetaObject mo = new MetaObject(this.id_u, this.name + " " + this.surname);
         mo.addInfo("Miejsce rejestracji", this.registerPoint.getName());
         mo.addInfo("Ostatnie logowanie", this.last_login != null ? this.last_login.toString() : "Brak danych");
-        mo.addInfo("Ostatnie punkty", this.last_points != null ? this.last_login.toString() : "Brak danych");
+        mo.addInfo("Ostatnie punkty", this.last_points != null ? this.last_points.toString() : "Brak danych");
         mo.addInfo("Ostatnie zamówienie",
-                this.last_order_realization != null ? this.last_login.toString() : "Brak danych");
+                this.last_order_realization != null ? this.last_order_realization.toString() : "Brak danych");
         return mo;
+
+    }
+
+    public void setId_u(String id) {
+        this.setId_u(new Integer(id));
 
     }
 }

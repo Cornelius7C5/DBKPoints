@@ -3,15 +3,26 @@ package pl.spot.dbk.points.server.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.spot.dbk.points.MetaObject;
+import pl.spot.dbk.points.server.hib.Invoice;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.UserService;
 
 @Transactional
-public class HibUserService extends AbstractHibService implements UserService {
+public class HibUserService implements UserService {
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    public Session session() {
+        return sessionFactory.getCurrentSession();
+    }
 
     @Override
     public User get(Object id) {
@@ -29,8 +40,9 @@ public class HibUserService extends AbstractHibService implements UserService {
 
     @Override
     public boolean update(User user) {
+        session().clear();
         try {
-            session().merge(user);
+            session().update(user);
         } catch (Exception e) {
             return false;
         }
@@ -50,11 +62,11 @@ public class HibUserService extends AbstractHibService implements UserService {
     @Override
     public List<MetaObject> listAsMetaObject() throws Exception {
         ArrayList<MetaObject> ret = new ArrayList<MetaObject>();
-        
-        for(User u : list()){
+
+        for (User u : list()) {
             ret.add(u.getMetaObject());
         }
-        
+
         return ret;
     }
 
@@ -62,5 +74,15 @@ public class HibUserService extends AbstractHibService implements UserService {
     @Override
     public List<User> list() {
         return session().createCriteria(User.class).list();
+    }
+
+    @Override
+    public int getPoints(String id) {
+        User u = (User) session().get(User.class, new Integer(id.toString()));
+        int sum = 0;
+        for (Invoice i : u.getInvoices()) {
+            sum += i.getAmount();
+        }
+        return sum;
     }
 }

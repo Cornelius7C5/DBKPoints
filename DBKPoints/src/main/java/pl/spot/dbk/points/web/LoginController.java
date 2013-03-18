@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.spot.dbk.points.CommonUtil;
 import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.SalePointService;
@@ -36,10 +37,8 @@ public class LoginController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User u = userService.get(userDetails.getUsername());
-//        u.setLast_login(CommonUtil.getCurrTimestamp());
-//        spService.save(u.getRegisterPoint());
-//        spService.save(u.getWorkSalePoint());
-//        userService.update(u);
+        u.setLast_login(CommonUtil.getCurrTimestamp());
+        userService.update(u);
 
         session.setAttribute(Constants.USER, u);
 

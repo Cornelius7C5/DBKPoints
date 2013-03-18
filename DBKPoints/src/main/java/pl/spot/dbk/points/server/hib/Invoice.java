@@ -21,6 +21,9 @@ public class Invoice {
     @Column(name = "id_i")
     private int id_i;
 
+    @Column(name = "amount")
+    private int amount;
+
     @ManyToOne
     @JoinColumn(name = "id_i_salepoint", referencedColumnName = "id_sp")
     private SalePoint invoiceSalePoint;
@@ -38,6 +41,14 @@ public class Invoice {
 
     public void setId_i(int id_i) {
         this.id_i = id_i;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public SalePoint getSalePoint() {

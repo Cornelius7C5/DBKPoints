@@ -48,6 +48,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView(Constants.USER + "main");
         user.setRole(roleService.getRole(user.getRole_id()));
         user.setRegisterPoint(spService.get(user.getRegisterPoint_id()));
+        userService.create(user);
 
         mv.addObject("ok", true);
         mv.addObject("newUserId", userService.create(user));
@@ -55,12 +56,12 @@ public class UserController {
         mv.addObject("sps", spService.list());
         return mv;
     }
-    
-    @RequestMapping(value="un/{id}")
-    public ModelAndView prepareUserDetails(@PathVariable String id){
+
+    @RequestMapping(value = "uno/{id}")
+    public ModelAndView prepareUserDetails(@PathVariable String id) {
         ModelAndView mv = new ModelAndView();
         System.out.println();
-        System.out.println("id="+ id);
+        System.out.println("id=" + id);
         System.out.println();
         return mv;
     }

@@ -2,14 +2,15 @@ package pl.spot.dbk.points.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.spot.dbk.points.Constants;
+import pl.spot.dbk.points.server.service.ItemService;
 import pl.spot.dbk.points.server.service.RoleService;
+import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.UserService;
 
 @Controller
@@ -20,6 +21,10 @@ public class AdminViewController {
     UserService userService;
     @Autowired
     RoleService roleService;
+    @Autowired
+    private SalePointService spService;
+    @Autowired
+    private ItemService itemService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView prepareMainView() {
@@ -55,32 +60,25 @@ public class AdminViewController {
         ModelAndView mv = new ModelAndView(Constants.ADMIN + "list");
         try {
             if (type.equals(Constants.SALE)) {
-                mv.addObject("list", userService.listAsMetaObject());
+                // mv.addObject("list", saleService.listAsMetaObject());
             }
             if (type.equals(Constants.USER)) {
                 mv.addObject("list", userService.listAsMetaObject());
             }
             if (type.equals(Constants.ITEM)) {
-                mv.addObject("list", userService.listAsMetaObject());
+                mv.addObject("list", itemService.listAsMetaObject());
             }
             if (type.equals(Constants.SP)) {
-                mv.addObject("list", userService.listAsMetaObject());
+                mv.addObject("list", spService.listAsMetaObject());
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        mv.addObject("roles", roleService.list());
+        mv.addObject("sps", spService.list());
         mv.addObject("type", type);
         return mv;
     }
 
-    @RequestMapping(value = "/uno/{type}/{id}",method=RequestMethod.GET)
-    public ModelAndView prepareDetails(@PathVariable("type") String type, @PathVariable("id") String id) {
-        ModelAndView mv = new ModelAndView();
-        System.out.println();
-        System.out.println("id: " + id);
-        System.out.println("type: " + type);
-        System.out.println();
-        return mv;
-    }
 }

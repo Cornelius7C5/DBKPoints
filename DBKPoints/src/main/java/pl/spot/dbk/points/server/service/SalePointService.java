@@ -1,19 +1,25 @@
 package pl.spot.dbk.points.server.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import pl.spot.dbk.points.MetaObject;
 import pl.spot.dbk.points.server.hib.SalePoint;
 
 @Service
 public interface SalePointService {
-    List<SalePoint> list();
+    public List<SalePoint> list();
 
-    SalePoint get(Object id);
+    public SalePoint get(Object id);
 
-    void create(SalePoint sp);
+    public void create(SalePoint sp);
 
-    void save(SalePoint workSalePoint);
+    public void save(SalePoint workSalePoint);
+
+    public ArrayList<MetaObject> listAsMetaObject();
+
+    public void update(SalePoint sp);
 
 }

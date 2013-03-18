@@ -18,6 +18,8 @@ public interface UserService {
     public void clearSession();
 
     public List<MetaObject> listAsMetaObject() throws Exception;
-    
+
     public List<User> list();
+
+    public int getPoints(String id);
 }

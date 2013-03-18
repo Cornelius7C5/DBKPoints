@@ -2,12 +2,7 @@ package pl.spot.dbk.points;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Set;
-
-import org.hsqldb.lib.Collection;
 
 public class MetaObject implements Serializable {
     private static final long serialVersionUID = -1158931697209657065L;
@@ -16,6 +11,13 @@ public class MetaObject implements Serializable {
     private String name;
 
     private HashMap<String, String> extra = new HashMap<String, String>();
+
+    public MetaObject() {}
+
+    public MetaObject(Object id, Object name) {
+        this.id = id.toString();
+        this.name = name.toString();
+    }
 
     public void setId(Object id_u) {
         this.id = id_u.toString();
@@ -43,10 +45,8 @@ public class MetaObject implements Serializable {
 
     public ArrayList<String> getKeyList() {
         ArrayList<String> ret = new ArrayList<String>();
-//        ret.add("Id");
-//        ret.add("Nazwa");
         ret.addAll(this.extra.keySet());
-        
+
         return ret;
     }
 

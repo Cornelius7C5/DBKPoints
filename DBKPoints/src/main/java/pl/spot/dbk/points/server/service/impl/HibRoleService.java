@@ -2,13 +2,22 @@ package pl.spot.dbk.points.server.service.impl;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.spot.dbk.points.server.hib.Role;
 import pl.spot.dbk.points.server.service.RoleService;
 
 @Transactional
-public class HibRoleService extends AbstractHibService implements RoleService {
+public class HibRoleService implements RoleService {
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    public Session session() {
+        return sessionFactory.getCurrentSession();
+    }
 
     @SuppressWarnings("unchecked")
     @Override

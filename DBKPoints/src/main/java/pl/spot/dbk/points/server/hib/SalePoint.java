@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import pl.spot.dbk.points.MetaObject;
+
 @Entity
 @Table(name = "SALEPOINTS")
 public class SalePoint {
@@ -85,6 +87,14 @@ public class SalePoint {
     @Override
     public String toString() {
         return name;
+    }
+
+    public MetaObject getMetaObject() {
+        return new MetaObject(this.id_sp, this.name);
+    }
+
+    public void setId_sp(String id) {
+        this.setId_sp(new Integer(id));
     }
 
 }

@@ -1,14 +1,25 @@
 package pl.spot.dbk.points.server.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import pl.spot.dbk.points.MetaObject;
 import pl.spot.dbk.points.server.hib.SalePoint;
 import pl.spot.dbk.points.server.service.SalePointService;
 
 @Transactional
-public class HibSalePointService extends AbstractHibService implements SalePointService {
+public class HibSalePointService implements SalePointService {
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    public Session session() {
+        return sessionFactory.getCurrentSession();
+    }
 
     @SuppressWarnings("unchecked")
     @Override
@@ -29,6 +40,22 @@ public class HibSalePointService extends AbstractHibService implements SalePoint
     @Override
     public void save(SalePoint sp) {
         session().save(sp);
+    }
+
+    @Override
+    public ArrayList<MetaObject> listAsMetaObject() {
+        ArrayList<MetaObject> ret = new ArrayList<MetaObject>();
+        
+        for(SalePoint sp : list()){
+            ret.add(sp.getMetaObject());
+        }
+        
+        return ret;
+    }
+
+    @Override
+    public void update(SalePoint sp) {
+        session().update(sp);
     }
 
 }
