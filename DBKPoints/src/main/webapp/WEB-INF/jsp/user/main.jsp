@@ -9,15 +9,15 @@
 <meta name="section" content="About" />
 </head>
 <body>
-  <p>
-    <c:if test="${ok}">
-      <c:out value="Dodano użytkownika. Nr karty: "></c:out>
-      <c:out value="${newUserId}"></c:out>
-    </c:if>
-  </p>
+<!--   <p> -->
+<%--     <c:if test="${ok}"> --%>
+<%--       <c:out value="Dodano użytkownika. Nr karty: "></c:out> --%>
+<%--       <c:out value="${newUserId}"></c:out> --%>
+<%--     </c:if> --%>
+<!--   </p> -->
   <%
       User u = (User) session.getAttribute(Constants.USER);
-      if (u.isAdmin()) {
+      if (u.getRole().getId_r()>1) {
   %>
   <jsp:include page="_addUser.jsp"></jsp:include>
   <%

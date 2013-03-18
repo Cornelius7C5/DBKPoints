@@ -13,7 +13,7 @@ public interface UserService {
 
     public boolean update(User user);
 
-    public int create(User user);
+    public void create(User user);
 
     public void clearSession();
 
@@ -22,4 +22,6 @@ public interface UserService {
     public List<User> list();
 
     public int getPoints(String id);
+
+    public void merge(User user);
 }

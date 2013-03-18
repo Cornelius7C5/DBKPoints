@@ -19,7 +19,7 @@
         <param-value>
       classpath:/applicationContext.xml
       classpath:/persistence-context.xml
-<!--       classpath:/urlrewrite.xml -->
+      classpath:/hibernate-services.xml
     </param-value>
     </context-param>
 

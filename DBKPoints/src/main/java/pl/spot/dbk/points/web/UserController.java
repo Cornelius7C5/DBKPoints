@@ -51,7 +51,6 @@ public class UserController {
         userService.create(user);
 
         mv.addObject("ok", true);
-        mv.addObject("newUserId", userService.create(user));
         mv.addObject("roles", roleService.list());
         mv.addObject("sps", spService.list());
         return mv;
