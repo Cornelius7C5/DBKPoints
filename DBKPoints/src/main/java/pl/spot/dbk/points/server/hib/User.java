@@ -47,17 +47,20 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "id_register_point", referencedColumnName = "id_sp")
-    SalePoint registerPoint;
+    private SalePoint registerPoint;
 
     @Transient
     private int registerPoint_id;
 
     @ManyToOne
     @JoinColumn(name = "id_work_sp", referencedColumnName = "id_sp")
-    SalePoint workSalePoint;
+    private SalePoint workSalePoint;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    Set<Invoice> invoices;
+    private Set<Invoice> invoices;
+
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+    private Set<Invoice> registeredInvoices;
 
     public User() {}
 
@@ -183,6 +186,20 @@ public class User {
 
     public void setRegisterPoint_id(int registerPoint_id) {
         this.registerPoint_id = registerPoint_id;
+    }
+
+    /**
+     * @return the registeredInvoices
+     */
+    public Set<Invoice> getRegisteredInvoices() {
+        return registeredInvoices;
+    }
+
+    /**
+     * @param registeredInvoices the registeredInvoices to set
+     */
+    public void setRegisteredInvoices(Set<Invoice> registeredInvoices) {
+        this.registeredInvoices = registeredInvoices;
     }
 
     public boolean isAdmin() {

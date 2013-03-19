@@ -2,12 +2,15 @@ package pl.spot.dbk.points.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.spot.dbk.points.Constants;
+import pl.spot.dbk.points.server.hib.Invoice;
+import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.ItemService;
 import pl.spot.dbk.points.server.service.RoleService;
 import pl.spot.dbk.points.server.service.SalePointService;
@@ -25,6 +28,13 @@ public class AdminViewController {
     private SalePointService spService;
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private InvoiceService saleService;
+
+    @ModelAttribute("invoice")
+    public Invoice getInvoice() {
+        return new Invoice();
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView prepareMainView() {
@@ -52,7 +62,10 @@ public class AdminViewController {
 
     @RequestMapping(value = "/sales", method = RequestMethod.GET)
     public ModelAndView prepareSalesView() {
-        return null;
+        ModelAndView mv = new ModelAndView(Constants.SELLER + "main");
+        mv.addObject("add", true);
+        mv.addObject("sps", spService.list());
+        return mv;
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -60,7 +73,7 @@ public class AdminViewController {
         ModelAndView mv = new ModelAndView(Constants.ADMIN + "list");
         try {
             if (type.equals(Constants.SALE)) {
-                // mv.addObject("list", saleService.listAsMetaObject());
+                mv.addObject("list", saleService.listAsMetaObject());
             }
             if (type.equals(Constants.USER)) {
                 mv.addObject("list", userService.listAsMetaObject());
@@ -72,11 +85,10 @@ public class AdminViewController {
                 mv.addObject("list", spService.listAsMetaObject());
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        mv.addObject("roles", roleService.list());
-        mv.addObject("sps", spService.list());
+//        mv.addObject("roles", roleService.list());
+//        mv.addObject("sps", spService.list());
         mv.addObject("type", type);
         return mv;
     }

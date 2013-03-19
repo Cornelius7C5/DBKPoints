@@ -14,12 +14,20 @@
 <body>
   <table>
     <tr>
-      <th>Id</th>
-      <th>Nazwa</th>
       <%
-          for (String h : list.get(0).getKeyList()) {
+          if (list.get(0).show_id) {
       %>
-      <th><%=h%></th>
+      <th>Id</th>
+      <%
+          }
+
+          if (list.get(0).show_name) {
+      %><th>Nazwa</th>
+      <%
+          }
+
+          for (String h : list.get(0).getKeyList()) {
+      %><th><%=h%></th>
       <%
           }
       %>
@@ -28,21 +36,25 @@
         for (MetaObject mo : list) {
     %>
     <tr>
-      <td><a href="<%="uno" + request.getAttribute("type") + mo.getId()%>/""> <%=mo.getId()%>
-      </a></td>
-      <td><a href="<%="uno" + request.getAttribute("type") + mo.getId()%>/"> <%=mo.getName()%></a></td>
       <%
-          for (String s : mo.getKeyList()) {
-      %>
-      <td><a href="<%="uno" + request.getAttribute("type") + mo.getId()%>/"> <%=mo.getExtraItem(s)%>
+          if (mo.show_id) {
+      %><td><a href="<%="uno" + request.getAttribute("type") + mo.getId()%>/"> <%=mo.getId()%>
       </a></td>
       <%
           }
+              if (mo.show_name) {
+      %><td><a href="<%="uno" + request.getAttribute("type") + mo.getId()%>/"> <%=mo.getName()%></a></td>
+      <%
+          }
+              for (String s : mo.getKeyList()) {
+      %><td><a href="<%="uno" + request.getAttribute("type") + mo.getId()%>/"> <%=mo.getExtraItem(s)%>
+      </a></td>
+      <%
+          }
+
+          }
       %>
     </tr>
-    <%
-        }
-    %>
   </table>
 </body>
 </html>

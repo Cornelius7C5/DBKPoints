@@ -51,7 +51,7 @@ public class HibUserService implements UserService {
 
     @Override
     public void create(User user) {
-       session().merge(user);
+        session().merge(user);
     }
 
     @Override
@@ -86,9 +86,4 @@ public class HibUserService implements UserService {
         return sum;
     }
 
-    @Override
-    public void merge(User user) {
-        // TODO Auto-generated method stub
-        
-    }
 }

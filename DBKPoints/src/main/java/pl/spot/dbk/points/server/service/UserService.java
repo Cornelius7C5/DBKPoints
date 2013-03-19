@@ -23,5 +23,4 @@ public interface UserService {
 
     public int getPoints(String id);
 
-    public void merge(User user);
 }
