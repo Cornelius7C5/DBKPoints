@@ -1,6 +1,7 @@
 package pl.spot.dbk.points.server.hib;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -91,6 +92,11 @@ public class Order {
     @Override
     public String toString() {
         return "Order [id_o=" + id_o + ", date=" + date + ", user=" + user + "]";
+    }
+
+    public void setBasketItems(ArrayList<Basket> basket) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

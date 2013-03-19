@@ -9,5 +9,6 @@ public final class Constants {
     public static final String ITEM = "/item/";
     public static final String LOGIN_SUCCESS = LOGIN + "success";
     public static final String SALE = "/sale/";
+    public static final String ORDER = "/order/";
 
 }

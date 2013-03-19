@@ -15,4 +15,5 @@
     <bean class="pl.spot.dbk.points.server.service.impl.HibSalePointService" />
     <bean class="pl.spot.dbk.points.server.service.impl.HibItemService" />
     <bean class="pl.spot.dbk.points.server.service.impl.HibInvoiceService" />
+    <bean class="pl.spot.dbk.points.server.service.impl.HibOrderService" />
 </beans>

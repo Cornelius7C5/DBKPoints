@@ -13,10 +13,15 @@ public class BasketId implements Serializable {
 
     public BasketId() {}
 
-    public BasketId(int id_order, int id_item) {
-        this.id_item = id_item;
-        this.id_order = id_order;
+    public BasketId(Order o, Item i) {
+        id_order = o.getId_o();
+        id_item = i.getId_i();
     }
+
+    // public BasketId(int id_order, int id_item) {
+    // this.id_item = id_item;
+    // this.id_order = id_order;
+    // }
 
     public int getId_order() {
         return id_order;

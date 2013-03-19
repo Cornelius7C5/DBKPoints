@@ -29,7 +29,7 @@ public class AdminViewController {
     @Autowired
     private ItemService itemService;
     @Autowired
-    private InvoiceService saleService;
+    private InvoiceService invoiceService;
 
     @ModelAttribute("invoice")
     public Invoice getInvoice() {
@@ -73,7 +73,7 @@ public class AdminViewController {
         ModelAndView mv = new ModelAndView(Constants.ADMIN + "list");
         try {
             if (type.equals(Constants.SALE)) {
-                mv.addObject("list", saleService.listAsMetaObject());
+                mv.addObject("list", invoiceService.listAsMetaObject());
             }
             if (type.equals(Constants.USER)) {
                 mv.addObject("list", userService.listAsMetaObject());

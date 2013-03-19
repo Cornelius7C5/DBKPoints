@@ -26,20 +26,20 @@ public class Basket {
 
     public Basket() {}
 
-    public Order getOrder() {
+    public Order getId_order() {
         return id_order;
     }
 
-    public void setOrder(Order order) {
-        this.id_order = order;
+    public void setId_order(Order id_order) {
+        this.id_order = id_order;
     }
 
-    public Item getItem() {
+    public Item getId_item() {
         return id_item;
     }
 
-    public void setItem(Item item) {
-        this.id_item = item;
+    public void setId_item(Item id_item) {
+        this.id_item = id_item;
     }
 
     public int getAmount() {
