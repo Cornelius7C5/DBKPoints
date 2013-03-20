@@ -1,6 +1,11 @@
 INSERT INTO roles(id_r,"name")VALUES(1,'uczestnik');
 INSERT INTO roles(id_r,"name")VALUES(11,'sprzedawca');
 INSERT INTO roles(id_r,"name")VALUES(111,'administrator');
-INSERT INTO salepoints(id_sp,"name")VALUES(0,'Centrala');
-INSERT INTO salepoints(id_sp,"name")VALUES(1,'INTERNET');
-INSERT INTO users(id_u,blocked_points,last_login,last_order_realization,last_points,"name","password",surname,id_register_point,id_role,id_work_sp)VALUES(1,0,'2000-01-01 00:00:00','2000-01-01 00:00:00','2000-01-01 00:00:00','Dagobert Baldwin','admin','Krześmirski',0,111,0);
+INSERT INTO statuses(id_s,name)VALUES(2,'złożone');
+INSERT INTO statuses(id_s,name)VALUES(4,'w realizacji');
+INSERT INTO statuses(id_s,name)VALUES(6,'zrealizowane');
+INSERT INTO statuses(id_s,name)VALUES(8,'anulowane');
+INSERT INTO salepoints(id_sp,"name")VALUES(5,'Centrala');
+INSERT INTO salepoints(id_sp,"name")VALUES(10,'INTERNET');
+INSERT INTO users(id_u,blocked_points,last_login,last_order_realization,last_points,"name","password",surname,id_register_point,id_role,id_work_sp)VALUES(50,0,'2000-01-01 00:00:00','2000-01-01 00:00:00','2000-01-01 00:00:00','Dagobert Baldwin','admin','Krześmirski',5,111,5);
+SELECT setval('public.hibernate_sequence', 200, true);

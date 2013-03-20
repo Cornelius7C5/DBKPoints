@@ -87,8 +87,8 @@ public class AdminViewController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        mv.addObject("roles", roleService.list());
-//        mv.addObject("sps", spService.list());
+        // mv.addObject("roles", roleService.list());
+        // mv.addObject("sps", spService.list());
         mv.addObject("type", type);
         return mv;
     }

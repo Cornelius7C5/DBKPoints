@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.spot.dbk.points.CommonUtil;
 import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.Invoice;
 import pl.spot.dbk.points.server.hib.User;
@@ -53,6 +54,7 @@ public class SalesController {
         invoice.setSalePoint(spService.get(invoice.getInvoiceSalePoint_id()));
         invoice.setUser(userService.get(invoice.getUser_id()));
         invoice.setSeller(u);
+        invoice.setOrder_registration(CommonUtil.getCurrTimestamp());
         invoiceService.create(invoice);
         return mv;
     }

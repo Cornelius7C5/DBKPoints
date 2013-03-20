@@ -29,17 +29,16 @@ public class LoginController {
     @RequestMapping(value = "failed", method = RequestMethod.GET)
     public ModelAndView prepareLoginFailedForm() {
         ModelAndView m = new ModelAndView("ss/failed");
+
         return m;
     }
 
     @RequestMapping(value = "success", method = RequestMethod.GET)
     public ModelAndView prepareLoginSuccessForm(HttpSession session) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         User u = userService.get(userDetails.getUsername());
         u.setLast_login(CommonUtil.getCurrTimestamp());
         userService.update(u);
-
         session.setAttribute(Constants.USER, u);
 
         switch (u.getRole().getId_r()) {

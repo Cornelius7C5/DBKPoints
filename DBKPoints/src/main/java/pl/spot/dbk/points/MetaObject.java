@@ -12,9 +12,9 @@ public class MetaObject implements Serializable {
 
     private HashMap<String, String> extra = new HashMap<String, String>();
 
-    public boolean show_id;
+    public boolean show_id = true;
 
-    public boolean show_name;
+    public boolean show_name = true;
 
     public MetaObject() {}
 
@@ -22,10 +22,10 @@ public class MetaObject implements Serializable {
         this.id = id.toString();
         this.name = name.toString();
     }
-    
-    public MetaObject(boolean id, boolean name){
+
+    public MetaObject(boolean id, boolean name) {
         this.show_id = id;
-        this.show_name = name; 
+        this.show_name = name;
     }
 
     public void setId(Object id_u) {

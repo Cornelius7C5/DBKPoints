@@ -68,14 +68,14 @@ public class Item {
     public MetaObject getMetaObject() throws Exception {
         MetaObject mo = new MetaObject(this.id_i, this.name);
 
-        mo.addInfo("cost", cost + "");
+        mo.addInfo("Koszt", cost + "");
 
         return mo;
     }
 
     public void setId_i(String id) {
         this.setId_i(new Integer(id));
-        
+
     }
 
 }

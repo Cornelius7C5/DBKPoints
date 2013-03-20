@@ -2,6 +2,7 @@ package pl.spot.dbk.points.server.hib;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,16 +23,16 @@ public class SalePoint {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "invoiceSalePoint")
+    @OneToMany(mappedBy = "invoiceSalePoint", cascade = CascadeType.ALL)
     private Set<Invoice> invoices;
 
-    @OneToMany(mappedBy = "registerPoint")
+    @OneToMany(mappedBy = "registerPoint", cascade = CascadeType.ALL)
     private Set<User> registeredClients;
 
-    @OneToMany(mappedBy = "workSalePoint")
+    @OneToMany(mappedBy = "workSalePoint", cascade = CascadeType.ALL)
     private Set<User> workers;
 
-    @OneToMany(mappedBy = "salePoint")
+    @OneToMany(mappedBy = "salePoint", cascade = CascadeType.ALL)
     private Set<Order> orders;
 
     public SalePoint() {}

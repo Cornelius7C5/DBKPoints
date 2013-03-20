@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +41,6 @@ public class HibUserService implements UserService {
 
     @Override
     public boolean update(User user) {
-        session().clear();
         try {
             session().update(user);
         } catch (Exception e) {
@@ -51,7 +51,13 @@ public class HibUserService implements UserService {
 
     @Override
     public void create(User user) {
-        session().merge(user);
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("Saving user: " + user.toString());
+        System.out.println();
+        session().saveOrUpdate(user);
+        System.out.println();
+        System.out.println("End of saving user: " + user.toString());
+        System.out.println("-----------------------------------------------------------");
     }
 
     @Override
@@ -84,6 +90,13 @@ public class HibUserService implements UserService {
             sum += i.getAmount();
         }
         return sum;
+    }
+
+    @Override
+    public Transaction startTransaction() {
+        Transaction t = session().getTransaction();
+        t.begin();
+        return null;
     }
 
 }

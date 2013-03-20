@@ -45,11 +45,11 @@ public class HibSalePointService implements SalePointService {
     @Override
     public ArrayList<MetaObject> listAsMetaObject() {
         ArrayList<MetaObject> ret = new ArrayList<MetaObject>();
-        
-        for(SalePoint sp : list()){
+
+        for (SalePoint sp : list()) {
             ret.add(sp.getMetaObject());
         }
-        
+
         return ret;
     }
 

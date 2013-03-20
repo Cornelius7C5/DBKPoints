@@ -142,7 +142,7 @@ public class Invoice {
     }
 
     public MetaObject getMetaObject() throws Exception {
-        MetaObject mo = new MetaObject(true,false);
+        MetaObject mo = new MetaObject(true, false);
         mo.setId(this.id_i);
         mo.addInfo("Data sprzedaży", this.order_registration.toString());
         mo.addInfo("Uczestnik", this.user.getName() + " " + this.user.getSurname());

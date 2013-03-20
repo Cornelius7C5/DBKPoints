@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +17,14 @@ import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.Basket;
 import pl.spot.dbk.points.server.hib.Item;
 import pl.spot.dbk.points.server.hib.Order;
+import pl.spot.dbk.points.server.hib.SalePoint;
+import pl.spot.dbk.points.server.hib.Status;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.ItemService;
 import pl.spot.dbk.points.server.service.OrderService;
+import pl.spot.dbk.points.server.service.SalePointService;
+import pl.spot.dbk.points.server.service.StatusService;
 
 @Controller
 @RequestMapping(value = Constants.USER + "**")
@@ -33,6 +36,10 @@ public class UserViewController {
     private ItemService itemService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    public SalePointService spService;
+    @Autowired
+    private StatusService statusService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView prepareMainView(HttpSession session) {
@@ -43,12 +50,13 @@ public class UserViewController {
 
         mv.addObject("points", points);
         mv.addObject("avPoints", points - u.getBlocked_points());
+        mv.addObject("blPoints", u.getBlocked_points());
         mv.addObject("list", itemService.list());
         return mv;
     }
 
     @RequestMapping(value = "/basket", method = RequestMethod.POST)
-    public ModelAndView addItemToBasket(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
+    public ModelAndView addItemToBasket(HttpServletRequest req, HttpSession session) {
 
         ModelAndView mv = prepareMainView(session);
         User u = (User) session.getAttribute(Constants.USER);
@@ -89,6 +97,7 @@ public class UserViewController {
 
         mv.addObject("points", points);
         mv.addObject("avPoints", points - u.getBlocked_points());
+        mv.addObject("blPoints", u.getBlocked_points());
         mv.addObject("list", itemService.list());
         return mv;
     }
@@ -122,16 +131,24 @@ public class UserViewController {
         session.setAttribute(Constants.ORDER, o);
         session.setAttribute(Constants.USER, u);
         mv.addObject("items", items);
+        mv.addObject("sps", spService.list());
         return mv;
     }
 
     @RequestMapping(value = "/basket/order", method = RequestMethod.POST)
-    public ModelAndView orderBasket(HttpSession session) {
+    public ModelAndView orderBasket(HttpServletRequest req, HttpSession session) {
+        // TODO
         ModelAndView mv = new ModelAndView();
         User u = (User) session.getAttribute(Constants.USER);
         Order o = (Order) session.getAttribute(Constants.ORDER);
+        @SuppressWarnings("unchecked")
         ArrayList<Basket> basket = (ArrayList<Basket>) session.getAttribute("basket");
+        SalePoint target = spService.get(req.getParameter("target"));
         
+        o.setSalePoint(target);
+        o.setUser(u);
+        o.setBasketItems(basket);
+        o.setStatus(statusService.getOrdered());
         orderService.create(o);
 
         return mv;

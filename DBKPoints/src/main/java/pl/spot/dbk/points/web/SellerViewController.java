@@ -1,5 +1,7 @@
 package pl.spot.dbk.points.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,13 +11,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.Invoice;
+import pl.spot.dbk.points.server.hib.User;
+import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.SalePointService;
+import pl.spot.dbk.points.server.service.UserService;
 
 @Controller
 @RequestMapping(value = Constants.SELLER + "**")
 public class SellerViewController {
     @Autowired
     private SalePointService spService;
+    @Autowired
+    private InvoiceService invoiceService;
+    @Autowired
+    UserService userService;
 
     @ModelAttribute("invoice")
     public Invoice getInvoice() {
@@ -23,8 +32,22 @@ public class SellerViewController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView prepareMain() {
+    public ModelAndView prepareMain(HttpServletRequest req) {
         ModelAndView mv = new ModelAndView(Constants.SELLER + "main");
+        return mv;
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ModelAndView prepareMainWithChecked(HttpServletRequest req) {
+        ModelAndView mv = new ModelAndView(Constants.SELLER + "main");
+        mv.addObject("check", true);
+        int id = new Integer(req.getParameter("id"));
+        int points = invoiceService.getPointsByUser(id);
+        User u = userService.get(id);
+
+        mv.addObject("points", points);
+        mv.addObject("avPoints", points - u.getBlocked_points());
+        mv.addObject("blPoints", u.getBlocked_points());
         return mv;
     }
 

@@ -96,7 +96,7 @@ public class Order {
 
     public void setBasketItems(ArrayList<Basket> basket) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

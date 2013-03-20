@@ -188,16 +188,12 @@ public class User {
         this.registerPoint_id = registerPoint_id;
     }
 
-    /**
-     * @return the registeredInvoices
-     */
+    /** @return the registeredInvoices */
     public Set<Invoice> getRegisteredInvoices() {
         return registeredInvoices;
     }
 
-    /**
-     * @param registeredInvoices the registeredInvoices to set
-     */
+    /** @param registeredInvoices the registeredInvoices to set */
     public void setRegisteredInvoices(Set<Invoice> registeredInvoices) {
         this.registeredInvoices = registeredInvoices;
     }

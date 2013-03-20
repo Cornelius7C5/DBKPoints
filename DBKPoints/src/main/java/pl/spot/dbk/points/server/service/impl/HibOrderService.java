@@ -19,7 +19,7 @@ public class HibOrderService implements OrderService {
 
     @Override
     public void create(Order o) {
-        session().merge(o);
+        session().saveOrUpdate(o);
     }
 
 }

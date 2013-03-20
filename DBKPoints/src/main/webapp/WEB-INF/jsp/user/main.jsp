@@ -19,26 +19,11 @@
       }
       if (u.getRole().getId_r() == 1) {
   %>
+  <jsp:include page="points.jsp"></jsp:include>
   <c:if test="${err}">
     <p>${errMessage}</p>
   </c:if>
-  <table>
-    <tr>
-      <td>Punkty -</td>
-    </tr>
-    <tr>
-      <td>- dostępne:</td>
-      <td><c:out value="${avPoints}"></c:out></td>
-    </tr>
-    <tr>
-      <td>- zablokowane:</td>
-      <td><%=u.getBlocked_points()%></td>
-    </tr>
-    <tr>
-      <td>- ogółem:</td>
-      <td><c:out value="${points}"></c:out></td>
-    </tr>
-  </table>
+  
   <%
       }
   %>

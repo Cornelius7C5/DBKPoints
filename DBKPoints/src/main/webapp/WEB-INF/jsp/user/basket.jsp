@@ -12,30 +12,35 @@
 <meta name="section" content="About" />
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Nazwa</th>
-            <th>Koszt</th>
-            <th>Ilość</th>
-            <th>Suma</th>
-        </tr>
-        <%
-            ArrayList<Basket> items = (ArrayList<Basket>) request.getAttribute("items");
-            for (Basket b : items) {
-        %>
-        <tr>
-            <td><%=b.getId_item().getName()%></td>
-            <td><%=b.getId_item().getCost()%></td>
-            <td>x <%=b.getAmount()%></td>
-            <td>= <%=b.getAmount() * b.getId_item().getCost()%></td>
-        </tr>
-        <%
-            }
-        %>
-    </table>
-    <c:url value="/user/basket/order" var="basket"></c:url>
-    <form:form path="${basket}" action="${basket}">
-        <input type="submit" name="basket" value="Koszyk" />
-    </form:form>
+  <table>
+    <tr>
+      <th>Nazwa</th>
+      <th>Koszt</th>
+      <th>Ilość</th>
+      <th>Suma</th>
+    </tr>
+    <%
+        ArrayList<Basket> items = (ArrayList<Basket>) request.getAttribute("items");
+        for (Basket b : items) {
+    %>
+    <tr>
+      <td><%=b.getId_item().getName()%></td>
+      <td><%=b.getId_item().getCost()%></td>
+      <td>x <%=b.getAmount()%></td>
+      <td>= <%=b.getAmount() * b.getId_item().getCost()%></td>
+    </tr>
+    <%
+        }
+    %>
+  </table>
+  <c:url value="/user/basket/order" var="basket"></c:url>
+  <form:form path="${basket}" action="${basket}">
+    <select name="target">
+      <c:forEach items="${sps}" var="sp">
+        <option value="${sp.id_sp}">${sp.name }</option>
+      </c:forEach>
+    </select>
+    <input type="submit" name="basket" value="Kup" />
+  </form:form>
 </body>
 </html>
