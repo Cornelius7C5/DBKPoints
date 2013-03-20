@@ -2,6 +2,7 @@ package pl.spot.dbk.points.server.hib;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Item {
     @Column(name = "cost")
     private int cost;
 
-    @OneToMany(mappedBy = "id_item")
+    @OneToMany(mappedBy = "id_item", cascade = CascadeType.ALL)
     private Set<Basket> basketsWithThisItem;
 
     public Item() {}

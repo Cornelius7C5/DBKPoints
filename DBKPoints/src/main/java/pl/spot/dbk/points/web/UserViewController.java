@@ -18,7 +18,6 @@ import pl.spot.dbk.points.server.hib.Basket;
 import pl.spot.dbk.points.server.hib.Item;
 import pl.spot.dbk.points.server.hib.Order;
 import pl.spot.dbk.points.server.hib.SalePoint;
-import pl.spot.dbk.points.server.hib.Status;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.ItemService;
@@ -144,7 +143,7 @@ public class UserViewController {
         @SuppressWarnings("unchecked")
         ArrayList<Basket> basket = (ArrayList<Basket>) session.getAttribute("basket");
         SalePoint target = spService.get(req.getParameter("target"));
-        
+
         o.setSalePoint(target);
         o.setUser(u);
         o.setBasketItems(basket);

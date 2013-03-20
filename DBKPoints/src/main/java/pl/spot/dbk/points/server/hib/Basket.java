@@ -1,30 +1,40 @@
 package pl.spot.dbk.points.server.hib;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "BASKETS")
-@IdClass(BasketId.class)
 public class Basket {
 
-    @ManyToOne
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id_b;
+
+    @ManyToOne
     @JoinColumn(name = "id_order", referencedColumnName = "id_o")
     private Order id_order;
 
     @ManyToOne
-    @Id
     @JoinColumn(name = "id_item", referencedColumnName = "id_i")
     private Item id_item;
 
     private int amount;
 
     public Basket() {}
+
+    public int getId_b() {
+        return id_b;
+    }
+
+    public void setId_b(int id_b) {
+        this.id_b = id_b;
+    }
 
     public Order getId_order() {
         return id_order;

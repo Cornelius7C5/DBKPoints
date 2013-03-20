@@ -2,6 +2,7 @@ package pl.spot.dbk.points.server.hib;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Status {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "status")
+    @OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
     List<Order> orders;
 
     public Status() {}

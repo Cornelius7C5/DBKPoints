@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Order {
     @JoinColumn(name = "id_status", referencedColumnName = "id_s")
     private Status status;
 
-    @OneToMany(mappedBy = "id_order")
+    @OneToMany(mappedBy = "id_order", cascade = CascadeType.ALL)
     private Set<Basket> basketItems;
 
     public Order() {}

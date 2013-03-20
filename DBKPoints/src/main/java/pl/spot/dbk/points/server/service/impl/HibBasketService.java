@@ -5,14 +5,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.spot.dbk.points.server.hib.Order;
+import pl.spot.dbk.points.server.hib.Basket;
 import pl.spot.dbk.points.server.service.BasketService;
-import pl.spot.dbk.points.server.service.OrderService;
 
 @Transactional
-public class HibOrderService implements OrderService {
-    @Autowired
-    private BasketService basketService;
+public class HibBasketService implements BasketService {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -22,8 +19,8 @@ public class HibOrderService implements OrderService {
     }
 
     @Override
-    public void create(Order o) {
-        session().saveOrUpdate(o);
+    public void create(Basket b) {
+        session().save(b);
     }
 
 }
