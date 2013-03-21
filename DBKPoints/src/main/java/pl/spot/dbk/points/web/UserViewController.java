@@ -24,6 +24,7 @@ import pl.spot.dbk.points.server.service.ItemService;
 import pl.spot.dbk.points.server.service.OrderService;
 import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.StatusService;
+import pl.spot.dbk.points.server.service.UserService;
 
 @Controller
 @RequestMapping(value = Constants.USER + "**")
@@ -39,6 +40,8 @@ public class UserViewController {
     public SalePointService spService;
     @Autowired
     private StatusService statusService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView prepareMainView(HttpSession session) {
@@ -111,25 +114,27 @@ public class UserViewController {
         ArrayList<Basket> basket = (ArrayList<Basket>) session.getAttribute("basket");
         ArrayList<Basket> items = new ArrayList<Basket>();
 
-        for (Basket b : basket) {
-            boolean exists = false;
-            for (Basket i : items) {
-                if (b.getId_item().getId_i() == i.getId_item().getId_i()) {
-                    exists = true;
-                    int indx = items.indexOf(i);
-                    i.setAmount(i.getAmount() + b.getAmount());
-                    items.set(indx, i);
+        if (basket != null) {
+            for (Basket b : basket) {
+                boolean exists = false;
+                for (Basket i : items) {
+                    if (b.getId_item().getId_i() == i.getId_item().getId_i()) {
+                        exists = true;
+                        int indx = items.indexOf(i);
+                        i.setAmount(i.getAmount() + b.getAmount());
+                        items.set(indx, i);
+                    }
+                }
+                if (!exists) {
+                    items.add(b);
                 }
             }
-            if (!exists) {
-                items.add(b);
-            }
+            o.setBasketItems(new HashSet<Basket>(items));
+            session.setAttribute("basket", items);
+            session.setAttribute(Constants.ORDER, o);
+            session.setAttribute(Constants.USER, u);
+            mv.addObject("items", items);
         }
-        o.setBasketItems(new HashSet<Basket>(items));
-        session.setAttribute("basket", items);
-        session.setAttribute(Constants.ORDER, o);
-        session.setAttribute(Constants.USER, u);
-        mv.addObject("items", items);
         mv.addObject("sps", spService.list());
         return mv;
     }
@@ -137,7 +142,8 @@ public class UserViewController {
     @RequestMapping(value = "/basket/order", method = RequestMethod.POST)
     public ModelAndView orderBasket(HttpServletRequest req, HttpSession session) {
         // TODO
-        ModelAndView mv = new ModelAndView();
+        if (!req.getParameter("basket").toString().equals("Kup")) { return prepareMainView(session); }
+        ModelAndView mv = new ModelAndView(Constants.USER + "main");
         User u = (User) session.getAttribute(Constants.USER);
         Order o = (Order) session.getAttribute(Constants.ORDER);
         @SuppressWarnings("unchecked")
@@ -149,6 +155,10 @@ public class UserViewController {
         o.setBasketItems(basket);
         o.setStatus(statusService.getOrdered());
         orderService.create(o);
+        userService.update(u);
+        session.setAttribute(Constants.USER, u);
+        session.setAttribute(Constants.ORDER, null);
+        session.setAttribute("basket", null);
 
         return mv;
     }

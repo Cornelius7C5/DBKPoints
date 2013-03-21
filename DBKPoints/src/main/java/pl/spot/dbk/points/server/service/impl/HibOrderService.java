@@ -6,13 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.spot.dbk.points.server.hib.Order;
-import pl.spot.dbk.points.server.service.BasketService;
 import pl.spot.dbk.points.server.service.OrderService;
 
 @Transactional
 public class HibOrderService implements OrderService {
-    @Autowired
-    private BasketService basketService;
 
     @Autowired
     private SessionFactory sessionFactory;

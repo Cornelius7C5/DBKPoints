@@ -41,6 +41,7 @@
       </c:forEach>
     </select>
     <input type="submit" name="basket" value="Kup" />
+    <input type="submit" name="basket" value="Powrót" />
   </form:form>
 </body>
 </html>
