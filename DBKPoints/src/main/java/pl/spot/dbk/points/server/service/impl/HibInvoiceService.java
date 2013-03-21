@@ -40,8 +40,9 @@ public class HibInvoiceService implements InvoiceService {
     }
 
     @Override
-    public void create(Invoice invoice) {
-        session().save(invoice);
+    public Invoice create(Invoice invoice) {
+        int id = (Integer) session().save(invoice);
+        return (Invoice) get(id);
     }
 
     @Override
@@ -62,6 +63,11 @@ public class HibInvoiceService implements InvoiceService {
     @SuppressWarnings("unchecked")
     private ArrayList<Invoice> list() {
         return (ArrayList<Invoice>) session().createCriteria(Invoice.class).list();
+    }
+
+    @Override
+    public Invoice get(int id) {
+        return (Invoice) session().get(Invoice.class, id);
     }
 
 }

@@ -50,14 +50,9 @@ public class HibUserService implements UserService {
     }
 
     @Override
-    public void create(User user) {
-        System.out.println("-----------------------------------------------------------");
-        System.out.println("Saving user: " + user.toString());
-        System.out.println();
-        session().saveOrUpdate(user);
-        System.out.println();
-        System.out.println("End of saving user: " + user.toString());
-        System.out.println("-----------------------------------------------------------");
+    public User create(User user) {
+        int id = (Integer) session().save(user);
+        return (User) get(id);
     }
 
     @Override

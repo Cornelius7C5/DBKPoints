@@ -14,7 +14,7 @@ public interface SalePointService {
 
     public SalePoint get(Object id);
 
-    public void create(SalePoint sp);
+    public SalePoint create(SalePoint sp);
 
     public void save(SalePoint workSalePoint);
 

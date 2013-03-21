@@ -7,6 +7,8 @@ import pl.spot.dbk.points.server.hib.Basket;
 @Service
 public interface BasketService {
 
-    public void create(Basket b);
+    public Basket create(Basket b);
+
+    public Basket get(int id);
 
 }

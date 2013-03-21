@@ -1,5 +1,7 @@
 package pl.spot.dbk.points.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.Item;
+import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.ItemService;
 
 @Controller
@@ -25,8 +28,10 @@ public class ItemController {
     }
 
     @RequestMapping(value = "main", method = RequestMethod.GET)
-    public ModelAndView prepareView() {
+    public ModelAndView prepareView(HttpSession session) {
         ModelAndView mv = new ModelAndView(Constants.ITEM + "main");
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 

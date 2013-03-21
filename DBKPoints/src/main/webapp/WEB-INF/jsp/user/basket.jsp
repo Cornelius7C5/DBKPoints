@@ -12,6 +12,7 @@
 <meta name="section" content="About" />
 </head>
 <body>
+<p>Zalogowany jako ${hello}</p>
   <table>
     <tr>
       <th>Nazwa</th>
@@ -21,7 +22,9 @@
     </tr>
     <%
         ArrayList<Basket> items = (ArrayList<Basket>) request.getAttribute("items");
+        int sum = 0;
         for (Basket b : items) {
+            sum += b.getAmount() * b.getId_item().getCost();
     %>
     <tr>
       <td><%=b.getId_item().getName()%></td>
@@ -32,6 +35,12 @@
     <%
         }
     %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Całość:</td>
+      <td><%=sum%></td>
+    </tr>
   </table>
   <c:url value="/user/basket/order" var="basket"></c:url>
   <form:form path="${basket}" action="${basket}">

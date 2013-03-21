@@ -16,6 +16,7 @@
 <title>Użytkownik -</title>
 </head>
 <body>
+ 
   <table>
     <form:form modelAttribute="user">
       <c:if test="${edit}">

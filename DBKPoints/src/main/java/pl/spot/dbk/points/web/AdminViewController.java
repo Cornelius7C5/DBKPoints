@@ -1,5 +1,7 @@
 package pl.spot.dbk.points.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.Invoice;
+import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.ItemService;
 import pl.spot.dbk.points.server.service.RoleService;
@@ -37,39 +40,50 @@ public class AdminViewController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView prepareMainView() {
+    public ModelAndView prepareMainView(HttpSession session) {
         ModelAndView mv = new ModelAndView(Constants.ADMIN + "main");
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView prepareUsersView() {
+    public ModelAndView prepareUsersView(HttpSession session) {
         ModelAndView mv = new ModelAndView("redirect:" + Constants.USER + "main");
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 
     @RequestMapping(value = "/item", method = RequestMethod.GET)
-    public ModelAndView preparePrizesView() {
+    public ModelAndView preparePrizesView(HttpSession session) {
         ModelAndView mv = new ModelAndView("redirect:" + Constants.ITEM + "main");
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 
     @RequestMapping(value = "/sp", method = RequestMethod.GET)
-    public ModelAndView prepareSalePointsView() {
+    public ModelAndView prepareSalePointsView(HttpSession session) {
         ModelAndView mv = new ModelAndView("redirect:" + Constants.SP + "main");
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 
     @RequestMapping(value = "/sales", method = RequestMethod.GET)
-    public ModelAndView prepareSalesView() {
+    public ModelAndView prepareSalesView(HttpSession session) {
         ModelAndView mv = new ModelAndView(Constants.SELLER + "main");
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         mv.addObject("add", true);
         mv.addObject("sps", spService.list());
         return mv;
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView prepareListings(@RequestParam("type") String type) {
+    public ModelAndView prepareListings(HttpSession session, @RequestParam("type") String type) {
+        User u = (User) session.getAttribute(Constants.USER);
         ModelAndView mv = new ModelAndView(Constants.ADMIN + "list");
         try {
             if (type.equals(Constants.SALE)) {
@@ -87,8 +101,7 @@ public class AdminViewController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // mv.addObject("roles", roleService.list());
-        // mv.addObject("sps", spService.list());
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         mv.addObject("type", type);
         return mv;
     }

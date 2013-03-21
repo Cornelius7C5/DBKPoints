@@ -19,8 +19,14 @@ public class HibBasketService implements BasketService {
     }
 
     @Override
-    public void create(Basket b) {
-        session().save(b);
+    public Basket create(Basket b) {
+        int id = (Integer) session().save(b);
+        return (Basket) get(id);
+    }
+
+    @Override
+    public Basket get(int id) {
+        return (Basket) session().get(Basket.class, id);
     }
 
 }

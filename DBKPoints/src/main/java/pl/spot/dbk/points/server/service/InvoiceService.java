@@ -13,7 +13,9 @@ public interface InvoiceService {
 
     public void update(Invoice invoice);
 
-    public void create(Invoice invoice);
+    public Invoice create(Invoice invoice);
+
+    public Invoice get(int id);
 
     public ArrayList<MetaObject> listAsMetaObject() throws Exception;
 }

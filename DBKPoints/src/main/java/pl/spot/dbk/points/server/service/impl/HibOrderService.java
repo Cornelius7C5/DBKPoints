@@ -1,5 +1,7 @@
 package pl.spot.dbk.points.server.service.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,20 @@ public class HibOrderService implements OrderService {
     }
 
     @Override
-    public void create(Order o) {
-        session().saveOrUpdate(o);
+    public Order create(Order o) {
+        int id = (Integer) session().save(o);
+        return (Order) get(id);
+    }
+
+    @Override
+    public Order get(int id) {
+        return (Order) session().get(Order.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Order> list() {
+        return (List<Order>) session().createCriteria(Order.class).list();
     }
 
 }

@@ -13,8 +13,11 @@
 <body>
   <div id="wrapper">
     <div id="header">
-      <a href="<c:url value="/"/>"><img title="Strona Główna" alt="Logo" src="http://lorempixel.com/120/120/technics/4/DBKPoints/"></a>
-      <a href="<c:url value="/logout" />" > Wyloguj</a>
+      <a href="<c:url value="/"/>"><img title="Strona Główna" alt="Logo"
+        src="http://lorempixel.com/120/120/technics/4/DBKPoints/"></a> <a href="<c:url value="/logout" />">
+        Wyloguj</a>
+      <p>Zalogowany jako ${hello}</p>
+      <hr>
     </div>
     <div id="content">
       <dec:body />

@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.spot.dbk.points.CommonUtil;
 import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.User;
-import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.UserService;
 
 @Controller
@@ -23,12 +22,9 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    SalePointService spService;
-
     @RequestMapping(value = "failed", method = RequestMethod.GET)
     public ModelAndView prepareLoginFailedForm() {
-        ModelAndView m = new ModelAndView("ss/failed");
+        ModelAndView m = new ModelAndView("/ss/failed");
 
         return m;
     }

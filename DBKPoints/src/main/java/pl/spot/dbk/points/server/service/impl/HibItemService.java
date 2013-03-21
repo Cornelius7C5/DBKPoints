@@ -22,8 +22,9 @@ public class HibItemService implements ItemService {
     }
 
     @Override
-    public void create(Item item) {
-        session().save(item);
+    public Item create(Item item) {
+        int id = (Integer) session().save(item);
+        return (Item) get(id);
     }
 
     @SuppressWarnings("unchecked")

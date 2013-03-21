@@ -9,10 +9,11 @@
 <meta name="section" content="About" />
 </head>
 <body>
+ 
   <p>
     <c:if test="${ok}">
       <c:out value="Dodano Punkt sprzedaży: "></c:out>
-      <c:out value="${newSP} }"></c:out>
+      <c:out value="${newSP}"></c:out>
     </c:if>
   </p>
   <%

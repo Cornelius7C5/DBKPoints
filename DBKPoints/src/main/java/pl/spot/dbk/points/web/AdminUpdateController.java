@@ -1,5 +1,7 @@
 package pl.spot.dbk.points.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,7 +47,8 @@ public class AdminUpdateController {
     }
 
     @RequestMapping(value = "/{type}/{id}", method = RequestMethod.GET)
-    public ModelAndView prepareDetails(@PathVariable("type") String type, @PathVariable("id") String id) {
+    public ModelAndView prepareDetails(@PathVariable("type") String type, @PathVariable("id") String id,
+            HttpSession session) {
         ModelAndView mv = null;
         try {
             if (Constants.USER.contains(type)) {
@@ -67,11 +70,13 @@ public class AdminUpdateController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 
     @RequestMapping(value = Constants.USER + "{id}", method = RequestMethod.POST)
-    public ModelAndView updateUser(@ModelAttribute("user") User user, @PathVariable("id") String id) {
+    public ModelAndView updateUser(@ModelAttribute("user") User user, @PathVariable("id") String id, HttpSession session) {
         ModelAndView mv = null;
         try {
             user.setRole(roleService.getRole(user.getRole_id()));
@@ -89,11 +94,13 @@ public class AdminUpdateController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 
     @RequestMapping(value = Constants.ITEM + "{id}", method = RequestMethod.POST)
-    public ModelAndView updateItem(@ModelAttribute("item") Item item, @PathVariable("id") String id) {
+    public ModelAndView updateItem(@ModelAttribute("item") Item item, @PathVariable("id") String id, HttpSession session) {
         ModelAndView mv = null;
         try {
             mv = new ModelAndView(Constants.ITEM + "edit");
@@ -106,11 +113,14 @@ public class AdminUpdateController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 
     @RequestMapping(value = Constants.SP + "{id}", method = RequestMethod.POST)
-    public ModelAndView updateSalePoint(@ModelAttribute("sp") SalePoint sp, @PathVariable("id") String id) {
+    public ModelAndView updateSalePoint(@ModelAttribute("sp") SalePoint sp, @PathVariable("id") String id,
+            HttpSession session) {
         ModelAndView mv = null;
         try {
             mv = new ModelAndView(Constants.SP + "edit");
@@ -123,6 +133,8 @@ public class AdminUpdateController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 }

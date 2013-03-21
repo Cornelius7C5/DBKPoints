@@ -1,6 +1,7 @@
 package pl.spot.dbk.points.web;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,8 +33,10 @@ public class SellerViewController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView prepareMain(HttpServletRequest req) {
+    public ModelAndView prepareMain(HttpServletRequest req, HttpSession session) {
         ModelAndView mv = new ModelAndView(Constants.SELLER + "main");
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 

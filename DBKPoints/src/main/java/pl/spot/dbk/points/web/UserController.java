@@ -40,6 +40,8 @@ public class UserController {
         ModelAndView mv = new ModelAndView(Constants.USER + "main");
         mv.addObject("roles", roleService.list());
         mv.addObject("sps", spService.list());
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 
@@ -48,9 +50,9 @@ public class UserController {
         ModelAndView mv = new ModelAndView(Constants.USER + "main");
         user.setRole(roleService.getRole(user.getRole_id()));
         user.setRegisterPoint(spService.get(user.getRegisterPoint_id()));
-        userService.create(user);
 
         mv.addObject("ok", true);
+        mv.addObject("u", userService.create(user));
         mv.addObject("roles", roleService.list());
         mv.addObject("sps", spService.list());
         return mv;

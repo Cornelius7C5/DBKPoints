@@ -10,14 +10,24 @@
 <meta name="section" content="About" />
 </head>
 <body>
-  <p>Witaj ${hello}</p>
+  <c:if test="${ok}">
+    <c:out value="${u.role.name} "></c:out>
+    <c:out value="${u.name} ${u.surname}"></c:out>
+    <c:out value=" o numerze karty : "></c:out>
+    <c:out value="${u.id_u}"></c:out>
+    <c:out value=" dodany!"></c:out>
+  </c:if>
   <c:if test="${!add}">
     <table>
       <tr>
-        <td><a href="<c:url value="/cso/add"></c:url>">Sprzedaże</a></td>
+        <td>
+          <a href="<c:url value="/cso/add"></c:url>">Sprzedaże</a>
+        </td>
       </tr>
       <tr>
-        <td><a href="users">Nowy użytkownik</a></td>
+        <td>
+          <a href="users">Nowy użytkownik</a>
+        </td>
       </tr>
     </table>
   </c:if>
@@ -30,7 +40,7 @@
     <input type="submit" value="Sprawdź" name="check">
   </form:form>
   <c:if test="${check}">
-    <jsp:include page="../user/points.jsp"></jsp:include>
+    <jsp:include page="../user/_points.jsp"></jsp:include>
   </c:if>
 </body>
 </html>

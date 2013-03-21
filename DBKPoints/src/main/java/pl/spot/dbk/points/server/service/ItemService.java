@@ -10,7 +10,7 @@ import pl.spot.dbk.points.server.hib.Item;
 
 @Service
 public interface ItemService {
-    public void create(Item item);
+    public Item create(Item item);
 
     public List<Item> list();
 

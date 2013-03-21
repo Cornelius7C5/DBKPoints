@@ -36,7 +36,10 @@ public class SalesController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView prepareView(HttpSession session) {
         ModelAndView mv = new ModelAndView(Constants.SALE + "main");
+        User u = (User) session.getAttribute(Constants.USER);
+
         mv.addObject("sps", spService.list());
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 

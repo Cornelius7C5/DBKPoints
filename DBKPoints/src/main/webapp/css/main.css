@@ -56,10 +56,6 @@ tr {
 	border-top: 1px solid maroon;
 }
 
-tr:hover {
-	background-color: maroon;
-}
-
 tr:nth-child(odd) {
 	background: #fee
 }

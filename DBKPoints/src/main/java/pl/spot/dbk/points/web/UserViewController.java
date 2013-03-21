@@ -54,6 +54,7 @@ public class UserViewController {
         mv.addObject("avPoints", points - u.getBlocked_points());
         mv.addObject("blPoints", u.getBlocked_points());
         mv.addObject("list", itemService.list());
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 

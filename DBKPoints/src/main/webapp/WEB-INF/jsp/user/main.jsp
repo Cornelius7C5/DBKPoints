@@ -14,16 +14,22 @@
       User u = (User) session.getAttribute(Constants.USER);
       if (u.isAdmin()) {
   %>
+  <c:if test="${ok}">
+    <c:out value="${u.role.name} "></c:out>
+    <c:out value="${u.name} ${u.surname}"></c:out>
+    <c:out value=" o numerze karty : "></c:out>
+    <c:out value="${u.id_u}"></c:out>
+    <c:out value=" dodany!"></c:out>
+  </c:if>
   <jsp:include page="_addUser.jsp"></jsp:include>
   <%
       }
       if (u.getRole().getId_r() == 1) {
   %>
-  <jsp:include page="points.jsp"></jsp:include>
+  <jsp:include page="_points.jsp"></jsp:include>
   <c:if test="${err}">
     <p>${errMessage}</p>
   </c:if>
-  
   <%
       }
   %>
@@ -39,8 +45,9 @@
     <c:forEach items="${list}" var="it">
       <tr>
         <form:form path="${url}" action="${url}">
-          <td><span class="item">${it.name} (${it.cost} pkt)</span> <br /> <input type="number" name="amount" value="0" min="0">
-            <input type="hidden" name="id" value="${it.id_i}" /> <input type="submit" name="add" value="Dodaj" /></td>
+          <td><span class="item">${it.name} (${it.cost} pkt)</span> <br /> <input type="number" name="amount"
+            value="0" min="0"> <input type="hidden" name="id" value="${it.id_i}" /> <input type="submit"
+            name="add" value="Dodaj" /></td>
         </form:form>
       </tr>
     </c:forEach>

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <body>
+ 
   <form:form method="POST" action="/DBKPoints/sp/add" modelAttribute="sp">
     <table>
       <tr>

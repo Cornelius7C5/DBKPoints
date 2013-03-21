@@ -33,8 +33,9 @@ public class HibSalePointService implements SalePointService {
     }
 
     @Override
-    public void create(SalePoint sp) {
-        session().save(sp);
+    public SalePoint create(SalePoint sp) {
+        int id = (Integer) session().save(sp);
+        return (SalePoint) get(id);
     }
 
     @Override

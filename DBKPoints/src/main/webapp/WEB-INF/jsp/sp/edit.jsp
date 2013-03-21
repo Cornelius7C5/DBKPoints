@@ -17,6 +17,7 @@
 <title>Punkt Sprzedaży -</title>
 </head>
 <body>
+ 
   <table>
     <form:form modelAttribute="sp">
       <c:if test="${edit}">

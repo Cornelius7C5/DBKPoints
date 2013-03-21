@@ -14,7 +14,7 @@ public interface UserService {
 
     public boolean update(User user);
 
-    public void create(User user);
+    public User create(User user);
 
     public void clearSession();
 

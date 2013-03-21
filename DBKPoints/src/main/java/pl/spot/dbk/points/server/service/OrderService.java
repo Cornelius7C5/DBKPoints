@@ -1,6 +1,7 @@
 package pl.spot.dbk.points.server.service;
 
-import org.hibernate.Session;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import pl.spot.dbk.points.server.hib.Order;
@@ -8,8 +9,10 @@ import pl.spot.dbk.points.server.hib.Order;
 @Service
 public interface OrderService {
 
-    public void create(Order o);
+    public Order create(Order o);
 
-    public Session session();
+    public Order get(int id);
+
+    public List<Order> list();
 
 }
