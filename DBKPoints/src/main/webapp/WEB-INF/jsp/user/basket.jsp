@@ -12,7 +12,6 @@
 <meta name="section" content="About" />
 </head>
 <body>
-<p>Zalogowany jako ${hello}</p>
   <table>
     <tr>
       <th>Nazwa</th>

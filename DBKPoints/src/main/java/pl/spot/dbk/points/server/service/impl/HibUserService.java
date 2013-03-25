@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,20 +77,13 @@ public class HibUserService implements UserService {
     }
 
     @Override
-    public int getPoints(String id) {
+    public int getPoints(Object id) {
         User u = (User) session().get(User.class, new Integer(id.toString()));
         int sum = 0;
         for (Invoice i : u.getInvoices()) {
-            sum += i.getAmount();
+            sum += i.getAmount() + i.getExtra();
         }
         return sum;
-    }
-
-    @Override
-    public Transaction startTransaction() {
-        Transaction t = session().getTransaction();
-        t.begin();
-        return null;
     }
 
 }

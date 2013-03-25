@@ -17,6 +17,11 @@ import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.UserService;
 
+/**
+ * 
+ * @author K.Olejniczak
+ *
+ */
 @Controller
 @RequestMapping(value = Constants.SALE + "**")
 public class SalesController {

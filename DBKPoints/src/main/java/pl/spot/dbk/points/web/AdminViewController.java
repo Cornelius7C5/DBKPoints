@@ -15,24 +15,30 @@ import pl.spot.dbk.points.server.hib.Invoice;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.ItemService;
-import pl.spot.dbk.points.server.service.RoleService;
+import pl.spot.dbk.points.server.service.OrderService;
 import pl.spot.dbk.points.server.service.SalePointService;
+import pl.spot.dbk.points.server.service.StatusService;
 import pl.spot.dbk.points.server.service.UserService;
 
+/** Preparation and navigation for the admin main view
+ * 
+ * @author K.Olejniczak */
 @Controller
 @RequestMapping(value = Constants.ADMIN + "*")
 public class AdminViewController {
 
     @Autowired
-    UserService userService;
-    @Autowired
-    RoleService roleService;
+    private UserService userService;
     @Autowired
     private SalePointService spService;
     @Autowired
     private ItemService itemService;
     @Autowired
     private InvoiceService invoiceService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private StatusService statusService;
 
     @ModelAttribute("invoice")
     public Invoice getInvoice() {
@@ -52,6 +58,7 @@ public class AdminViewController {
         ModelAndView mv = new ModelAndView("redirect:" + Constants.USER + "main");
         User u = (User) session.getAttribute(Constants.USER);
         mv.addObject("hello", u.getName() + " " + u.getSurname());
+        mv.addObject("add",true);
         return mv;
     }
 
@@ -81,10 +88,27 @@ public class AdminViewController {
         return mv;
     }
 
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    public ModelAndView prepareOrdersView(HttpSession session) {
+        ModelAndView mv = new ModelAndView(Constants.SELLER + "main");
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
+        mv.addObject("add", true);
+        mv.addObject("sps", spService.list());
+        return mv;
+    }
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView prepareListings(HttpSession session, @RequestParam("type") String type) {
         User u = (User) session.getAttribute(Constants.USER);
-        ModelAndView mv = new ModelAndView(Constants.ADMIN + "list");
+        ModelAndView mv = null;
+        if (!type.equals(Constants.ORDER)) {
+            mv = new ModelAndView(Constants.ADMIN + "list");
+        } else {
+            mv = new ModelAndView(Constants.ORDER + "main");
+            mv.addObject("orders", orderService.list());
+            mv.addObject("statuses", statusService.list());
+        }
         try {
             if (type.equals(Constants.SALE)) {
                 mv.addObject("list", invoiceService.listAsMetaObject());

@@ -1,7 +1,5 @@
 package pl.spot.dbk.points.web;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,16 +33,6 @@ public class UserController {
         return new User();
     }
 
-    @RequestMapping(value = "main", method = RequestMethod.GET)
-    public ModelAndView prepareView(HttpSession session) {
-        ModelAndView mv = new ModelAndView(Constants.USER + "main");
-        mv.addObject("roles", roleService.list());
-        mv.addObject("sps", spService.list());
-        User u = (User) session.getAttribute(Constants.USER);
-        mv.addObject("hello", u.getName() + " " + u.getSurname());
-        return mv;
-    }
-
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ModelAndView addUser(@ModelAttribute("user") User user, ModelMap model) {
         ModelAndView mv = new ModelAndView(Constants.USER + "main");
@@ -55,6 +43,7 @@ public class UserController {
         mv.addObject("u", userService.create(user));
         mv.addObject("roles", roleService.list());
         mv.addObject("sps", spService.list());
+        mv.addObject("add", true);
         return mv;
     }
 

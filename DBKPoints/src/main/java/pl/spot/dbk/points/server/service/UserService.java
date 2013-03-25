@@ -2,7 +2,6 @@ package pl.spot.dbk.points.server.service;
 
 import java.util.List;
 
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
 import pl.spot.dbk.points.MetaObject;
@@ -22,8 +21,6 @@ public interface UserService {
 
     public List<User> list();
 
-    public int getPoints(String id);
-
-    public Transaction startTransaction();
+    public int getPoints(Object id);
 
 }

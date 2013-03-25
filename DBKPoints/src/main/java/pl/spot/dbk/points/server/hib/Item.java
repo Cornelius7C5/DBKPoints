@@ -1,6 +1,6 @@
 package pl.spot.dbk.points.server.hib;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +25,7 @@ public class Item {
     private int cost;
 
     @OneToMany(mappedBy = "id_item", cascade = CascadeType.ALL)
-    private Set<Basket> basketsWithThisItem;
+    private List<Basket> basketsWithThisItem;
 
     public Item() {}
 
@@ -53,11 +53,11 @@ public class Item {
         this.cost = cost;
     }
 
-    public Set<Basket> getBasketsWithThisItem() {
+    public List<Basket> getBasketsWithThisItem() {
         return basketsWithThisItem;
     }
 
-    public void setBasketsWithThisItem(Set<Basket> basketsWithThisItem) {
+    public void setBasketsWithThisItem(List<Basket> basketsWithThisItem) {
         this.basketsWithThisItem = basketsWithThisItem;
     }
 

@@ -1,8 +1,7 @@
 package pl.spot.dbk.points.server.hib;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "ORDERS")
@@ -27,7 +27,11 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "id_user", referencedColumnName = "id_u")
-    private User user;
+    private User buyer;
+
+    @ManyToOne
+    @JoinColumn(name = "id_seller", referencedColumnName = "id_u")
+    private User seller;
 
     @ManyToOne
     @JoinColumn(name = "id_o_salepoint", referencedColumnName = "id_sp")
@@ -38,7 +42,10 @@ public class Order {
     private Status status;
 
     @OneToMany(mappedBy = "id_order", cascade = CascadeType.ALL)
-    private Set<Basket> basketItems;
+    private List<Basket> basketItems;
+
+    @Transient
+    private int sum;
 
     public Order() {}
 
@@ -58,12 +65,20 @@ public class Order {
         this.date = date;
     }
 
-    public User getUser() {
-        return user;
+    public User getBuyer() {
+        return buyer;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
     }
 
     public SalePoint getSalePoint() {
@@ -74,11 +89,11 @@ public class Order {
         this.salePoint = salePoint;
     }
 
-    public Set<Basket> getBasketItems() {
+    public List<Basket> getBasketItems() {
         return basketItems;
     }
 
-    public void setBasketItems(Set<Basket> basketItems) {
+    public void setBasketItems(List<Basket> basketItems) {
         this.basketItems = basketItems;
     }
 
@@ -92,12 +107,15 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order [id_o=" + id_o + ", date=" + date + ", user=" + user + "]";
+        return "Order [id_o=" + id_o + ", date=" + date + ", buyer=" + buyer + "]";
     }
 
-    public void setBasketItems(ArrayList<Basket> basket) {
-        // TODO Auto-generated method stub
+    public int getSum() {
+        return sum;
+    }
 
+    public void setSum(int sum) {
+        this.sum = sum;
     }
 
 }

@@ -32,6 +32,11 @@ public class SellerViewController {
         return new Invoice();
     }
 
+    @ModelAttribute("user")
+    public User getUser() {
+        return new User();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView prepareMain(HttpServletRequest req, HttpSession session) {
         ModelAndView mv = new ModelAndView(Constants.SELLER + "main");
@@ -41,22 +46,25 @@ public class SellerViewController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView prepareMainWithChecked(HttpServletRequest req) {
-        ModelAndView mv = new ModelAndView(Constants.SELLER + "main");
+    public ModelAndView prepareMainWithChecked(HttpServletRequest req, HttpSession session) {
+        ModelAndView mv = new ModelAndView("redirect:" + Constants.USER + "main");
         mv.addObject("check", true);
         int id = new Integer(req.getParameter("id"));
-        int points = invoiceService.getPointsByUser(id);
+        int points = userService.getPoints(id);
         User u = userService.get(id);
 
         mv.addObject("points", points);
         mv.addObject("avPoints", points - u.getBlocked_points());
         mv.addObject("blPoints", u.getBlocked_points());
+        session.setAttribute("cso", u);
+        mv.addObject("add", false);
         return mv;
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView prepareUsersView() {
         ModelAndView mv = new ModelAndView("redirect:" + Constants.USER + "main");
+        mv.addObject("add", true);
         return mv;
     }
 

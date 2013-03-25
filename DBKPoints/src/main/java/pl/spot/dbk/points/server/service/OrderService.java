@@ -13,6 +13,12 @@ public interface OrderService {
 
     public Order get(int id);
 
+    public void update(Order o);
+
     public List<Order> list();
+
+    public void cancel(int order_id);
+
+    public void changeStatus(int id_o, int status);
 
 }

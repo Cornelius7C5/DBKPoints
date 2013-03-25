@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.spot.dbk.points.MetaObject;
 import pl.spot.dbk.points.server.hib.Invoice;
-import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.UserService;
 
@@ -24,15 +23,7 @@ public class HibInvoiceService implements InvoiceService {
         return sessionFactory.getCurrentSession();
     }
 
-    @Override
-    public int getPointsByUser(Object id) {
-        User u = (User) userService.get(id);
-        int sum = 0;
-        for (Invoice i : u.getInvoices()) {
-            sum += i.getAmount() + i.getExtra();
-        }
-        return sum;
-    }
+    
 
     @Override
     public void update(Invoice invoice) {
@@ -69,5 +60,7 @@ public class HibInvoiceService implements InvoiceService {
     public Invoice get(int id) {
         return (Invoice) session().get(Invoice.class, id);
     }
+
+   
 
 }

@@ -1,11 +1,13 @@
 package pl.spot.dbk.points.server.hib;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,6 +63,12 @@ public class User {
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
     private Set<Invoice> registeredInvoices;
+
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Order> orderedOrders;
+
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+    private List<Order> realizedOrders;
 
     public User() {}
 
@@ -196,6 +204,22 @@ public class User {
     /** @param registeredInvoices the registeredInvoices to set */
     public void setRegisteredInvoices(Set<Invoice> registeredInvoices) {
         this.registeredInvoices = registeredInvoices;
+    }
+
+    public List<Order> getOrderedOrders() {
+        return orderedOrders;
+    }
+
+    public void setOrderedOrders(List<Order> orderedOrders) {
+        this.orderedOrders = orderedOrders;
+    }
+
+    public List<Order> getRealisedOrders() {
+        return realizedOrders;
+    }
+
+    public void setRealisedOrders(List<Order> realisedOrders) {
+        this.realizedOrders = realisedOrders;
     }
 
     public boolean isAdmin() {

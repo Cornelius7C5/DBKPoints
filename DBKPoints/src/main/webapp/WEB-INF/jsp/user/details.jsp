@@ -16,7 +16,6 @@
 <title>Użytkownik -</title>
 </head>
 <body>
-<p>Zalogowany jako ${hello}</p>
   <table>
     <form:form modelAttribute="user">
       <c:if test="${edit}">
@@ -71,7 +70,7 @@
       </tr>
       <c:if test="${edit}">
         <tr>
-          <td><input type="submit" value="Wyślij"/></td>
+          <td><input type="submit" value="Wyślij" /></td>
         </tr>
       </c:if>
     </form:form>

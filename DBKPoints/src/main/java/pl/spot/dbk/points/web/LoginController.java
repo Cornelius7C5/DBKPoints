@@ -14,7 +14,9 @@ import pl.spot.dbk.points.CommonUtil;
 import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.UserService;
-
+/**
+ * Login naigation depending on user role
+ */
 @Controller
 @RequestMapping("/login/**")
 public class LoginController {

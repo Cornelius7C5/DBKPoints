@@ -14,7 +14,11 @@ import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.Item;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.ItemService;
-
+/**
+ * Adding new Items
+ * @author K.Olejniczak
+ *
+ */
 @Controller
 @RequestMapping(value = Constants.ITEM + "**")
 public class ItemController {

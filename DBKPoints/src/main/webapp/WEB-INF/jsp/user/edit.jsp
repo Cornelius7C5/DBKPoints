@@ -16,34 +16,41 @@
 <title>Użytkownik -</title>
 </head>
 <body>
- 
   <table>
     <form:form modelAttribute="user">
       <c:if test="${edit}">
       </c:if>
       <tr>
         <td><form:label path="id_u">Nr karty:</form:label></td>
+        <td><form:label path="last_login">Ostatnie logowanie:</form:label></td>
       </tr>
       <tr>
         <td><form:input path="id_u" value="<%=details.getId_u()%>" disabled="true" /></td>
+        <td><form:input path="last_login" value="<%=details.getLast_loginAsString()%>" /></td>
       </tr>
       <tr>
         <td><form:label path="name">Imię/Imiona:</form:label></td>
+        <td><form:label path="last_order_realization">Ostatnia realizacja zamówienia:</form:label></td>
       </tr>
       <tr>
         <td><form:input path="name" value="<%=details.getName()%>" /></td>
+        <td><form:input path="last_order_realization" value="<%=details.getLast_order_realizationAsString()%>" /></td>
       </tr>
       <tr>
         <td><form:label path="surname">Nazwisko:</form:label></td>
+        <td><form:label path="last_points">Ostatnio dodane punkty:</form:label></td>
       </tr>
       <tr>
         <td><form:input path="surname" value="<%=details.getSurname()%>" /></td>
+        <td><form:input path="last_points" value="<%=details.getLast_pointsAsString()%>" /></td>
       </tr>
       <tr>
         <td><form:label path="password">Hasło:</form:label></td>
+        <td><form:label path="blocked_points">Zablokowane punkty:</form:label></td>
       </tr>
       <tr>
         <td><form:password path="password" value="<%=details.getPassword()%>" /></td>
+        <td><form:input path="blocked_points" value="<%=details.getBlocked_points()%>" /></td>
       </tr>
       <tr>
         <td><form:label path="registerPoint_id">Punkt Rejestracji:</form:label></td>
@@ -62,30 +69,6 @@
           </form:select></td>
       </tr>
       <tr>
-        <td><form:label path="last_login">Ostatnie logowanie:</form:label></td>
-      </tr>
-      <tr>
-        <td><form:input path="last_login" value="<%=details.getLast_loginAsString()%>" /></td>
-      </tr>
-      <tr>
-        <td><form:label path="last_order_realization">Ostatnia realizacja zamówienia:</form:label></td>
-      </tr>
-      <tr>
-        <td><form:input path="last_order_realization" value="<%=details.getLast_order_realizationAsString()%>" /></td>
-      </tr>
-      <tr>
-        <td><form:label path="last_points">Ostatnio dodane punkty:</form:label></td>
-      </tr>
-      <tr>
-        <td><form:input path="last_points" value="<%=details.getLast_pointsAsString()%>" /></td>
-      </tr>
-      <tr>
-        <td><form:label path="blocked_points">Zablokowane punkty:</form:label></td>
-      </tr>
-      <tr>
-        <td><form:input path="blocked_points" value="<%=details.getBlocked_points()%>" /></td>
-      </tr>
-      <tr>
         <td>Punkty:</td>
       </tr>
       <tr>
@@ -96,5 +79,6 @@
       </tr>
     </form:form>
   </table>
+  
 </body>
 </html>

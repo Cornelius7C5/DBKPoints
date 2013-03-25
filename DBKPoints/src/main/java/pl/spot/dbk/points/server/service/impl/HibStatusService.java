@@ -1,5 +1,7 @@
 package pl.spot.dbk.points.server.service.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,17 @@ public class HibStatusService implements StatusService {
     @Override
     public Status getCancelled() {
         return (Status) session().get(Status.class, new Integer(8));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Status> list() {
+        return session().createCriteria(Status.class).list();
+    }
+
+    @Override
+    public Status get(int status) {
+        return (Status) session().get(Status.class, status);
     }
 
 }

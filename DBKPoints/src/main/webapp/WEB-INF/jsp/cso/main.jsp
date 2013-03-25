@@ -29,6 +29,11 @@
           <a href="users">Nowy użytkownik</a>
         </td>
       </tr>
+      <tr>
+        <td>
+          <a href="orders">Zamówienia</a>
+        </td>
+      </tr>
     </table>
   </c:if>
   <c:if test="${add}">
@@ -39,8 +44,6 @@
     <input type="text" name="id">
     <input type="submit" value="Sprawdź" name="check">
   </form:form>
-  <c:if test="${check}">
-    <jsp:include page="../user/_points.jsp"></jsp:include>
-  </c:if>
+  
 </body>
 </html>

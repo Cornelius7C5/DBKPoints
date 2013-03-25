@@ -19,6 +19,11 @@ import pl.spot.dbk.points.server.service.RoleService;
 import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.UserService;
 
+/**
+ * Controller for populating a form with editing data and persisting the edits.
+ * @author K.Olejniczak
+ *
+ */
 @Controller
 @RequestMapping(value = Constants.ADMIN + "uno/*")
 public class AdminUpdateController {

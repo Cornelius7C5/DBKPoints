@@ -11,49 +11,36 @@
 <body>
   <table>
     <tr>
-      <td>
-        <a href="sales">Sprzedaże</a>
-      </td>
-      <td>
-        <a href="<c:url value="list"><c:param name="type" value="<%=Constants.SALE%>"></c:param></c:url>">Lista</a>
+      <td><a href="sales">Sprzedaże</a></td>
+      <td><a href="<c:url value="list"><c:param name="type" value="<%=Constants.SALE%>"></c:param></c:url>">Lista</a>
       </td>
     </tr>
     <tr>
-      <td>
-        <a href="users">Nowy użytkownik</a>
-      </td>
-      <td>
-        <a href="<c:url value="list"><c:param name="type" value="<%=Constants.USER%>"></c:param></c:url>">Lista</a>
+      <td><a href="users">Nowy użytkownik</a></td>
+      <td><a href="<c:url value="list"><c:param name="type" value="<%=Constants.USER%>"></c:param></c:url>">Lista</a>
       </td>
     </tr>
     <tr>
-      <td>
-        <a href="item">Nowy przedmiot</a>
-      </td>
-      <td>
-        <a href="<c:url value="list"><c:param name="type" value="<%=Constants.ITEM%>"></c:param></c:url>">Lista</a>
+      <td><a href="item">Nowy przedmiot</a></td>
+      <td><a href="<c:url value="list"><c:param name="type" value="<%=Constants.ITEM%>"></c:param></c:url>">Lista</a>
       </td>
     </tr>
     <tr>
-      <td>
-        <a href="sp">Nowy oddział</a>
-      </td>
-      <td>
-        <a href="<c:url value="list"><c:param name="type" value="<%=Constants.SP%>"></c:param></c:url>">Lista</a>
+      <td><a href="sp">Nowy oddział</a></td>
+      <td><a href="<c:url value="list"><c:param name="type" value="<%=Constants.SP%>"></c:param></c:url>">Lista</a>
       </td>
     </tr>
     <tr></tr>
     <tr>
-      <td>
-      <td>
-        <c:url value="/cso/" var="url"></c:url>
-        <form:form path="${url}" action="${url}">
+      <td>Punkty uczestnika:</td>
+      <td><c:url value="/cso/" var="url"></c:url> <form:form path="${url}" action="${url}">
           <input type="text" name="id">
           <input type="submit" value="Sprawdź" name="check">
-        </form:form>
-      </td>
-      <td>
-        <a href="<c:url value="list"><c:param name="type" value="<%=Constants.ORDER%>"></c:param></c:url>">Lista</a>
+        </form:form></td>
+    </tr>
+    <tr>
+      <td>Zamówienia:</td>
+      <td><a href="<c:url value="list"><c:param name="type" value="<%=Constants.ORDER%>"></c:param></c:url>">Lista</a>
       </td>
     </tr>
   </table>
