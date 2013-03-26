@@ -1,3 +1,5 @@
+<%@page import="pl.spot.dbk.points.server.hib.User"%>
+<%@page import="pl.spot.dbk.points.Constants"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -38,6 +40,10 @@
       </tr>
     </c:forEach>
     <tr>
+      <%
+          User u = (User) session.getAttribute(Constants.USER);
+          if (u.getRole().getId_r() > 10) {
+      %>
       <td><c:url value="/order/${order.id_o}" var="ord"></c:url> <form:form path="${ord}" action="${ord}">
           <select name="status">
             <c:forEach items="${statuses}" var="s">
@@ -49,6 +55,9 @@
           </select>
           <input type="submit" value="Zmień" name="change">
         </form:form></td>
+      <%
+          }
+      %>
     </tr>
   </table>
 </body>

@@ -20,9 +20,9 @@ import pl.spot.dbk.points.server.hib.Item;
 import pl.spot.dbk.points.server.hib.Order;
 import pl.spot.dbk.points.server.hib.SalePoint;
 import pl.spot.dbk.points.server.hib.User;
-import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.ItemService;
 import pl.spot.dbk.points.server.service.OrderService;
+import pl.spot.dbk.points.server.service.RoleService;
 import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.StatusService;
 import pl.spot.dbk.points.server.service.UserService;
@@ -31,8 +31,6 @@ import pl.spot.dbk.points.server.service.UserService;
 @RequestMapping(value = Constants.USER + "**")
 public class UserViewController {
 
-    @Autowired
-    private InvoiceService invoiceService;
     @Autowired
     private ItemService itemService;
     @Autowired
@@ -43,6 +41,8 @@ public class UserViewController {
     private StatusService statusService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
     @ModelAttribute("user")
     public User getUser() {
@@ -50,7 +50,8 @@ public class UserViewController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView prepareMainView(HttpServletRequest req, HttpSession session, @RequestParam("add") boolean add) {
+    public ModelAndView prepareMainView(HttpServletRequest req, HttpSession session, @RequestParam(value = "add",
+            required = false, defaultValue = "false") boolean add) {
         ModelAndView mv = new ModelAndView(Constants.USER + "main");
         User u = (User) session.getAttribute(Constants.USER);
         User buyer = null;
@@ -63,15 +64,24 @@ public class UserViewController {
             buyer = u;
             mv.addObject("hello", u.getName() + " " + u.getSurname());
         }
-        int points = userService.getPoints(buyer.getId_u());
-        mv.addObject("points", points);
-        mv.addObject("avPoints", points - buyer.getBlocked_points());
-        mv.addObject("blPoints", buyer.getBlocked_points());
-        mv.addObject("list", itemService.list());
-        mv.addObject("orders", buyer.getOrderedOrders());
-        mv.addObject("add", add);
-        mv.addObject("sps", spService.list());
-        session.setAttribute("cso", buyer);
+        if ((Boolean) session.getAttribute("err")) {
+            session.getAttribute("err");
+            session.getAttribute("errMess");
+            mv.addObject("err", session.getAttribute("err"));
+            mv.addObject("errMess", session.getAttribute("errMess"));
+            session.setAttribute("err", false);
+        } else {
+            int points = userService.getPoints(buyer.getId_u());
+            mv.addObject("points", points);
+            mv.addObject("avPoints", points - buyer.getBlocked_points());
+            mv.addObject("blPoints", buyer.getBlocked_points());
+            mv.addObject("list", itemService.list());
+            mv.addObject("orders", buyer.getOrderedOrders());
+            mv.addObject("add", add);
+            mv.addObject("roles", roleService.list());
+            mv.addObject("sps", spService.list());
+            session.setAttribute("cso", buyer);
+        }
         return mv;
     }
 
@@ -95,7 +105,7 @@ public class UserViewController {
 
         if (userService.getPoints(buyer.getId_u()) <= i.getCost() * amount) {
             mv.addObject("err", true);
-            mv.addObject("errMessage", "Niewystarczająca ilość punktów!");
+            mv.addObject("errMess", "Niewystarczająca ilość punktów!");
             return mv;
         }
         if (o == null) {
@@ -179,7 +189,7 @@ public class UserViewController {
     @RequestMapping(value = "/basket/order", method = RequestMethod.POST)
     public ModelAndView orderBasket(HttpServletRequest req, HttpSession session) {
         if (!req.getParameter("basket").toString().equals("Kup")) { return prepareMainView(req, session, false); }
-        ModelAndView mv = new ModelAndView(Constants.USER + "main");
+        ModelAndView mv = prepareMainView(req, session, false);
         User u = (User) session.getAttribute(Constants.USER);
         User buyer = null;
         if (session.getAttribute("cso") != null) {

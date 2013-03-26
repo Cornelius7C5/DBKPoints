@@ -17,11 +17,7 @@ import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.UserService;
 
-/**
- * 
- * @author K.Olejniczak
- *
- */
+/** @author K.Olejniczak */
 @Controller
 @RequestMapping(value = Constants.SALE + "**")
 public class SalesController {
@@ -63,7 +59,8 @@ public class SalesController {
         invoice.setUser(userService.get(invoice.getUser_id()));
         invoice.setSeller(u);
         invoice.setOrder_registration(CommonUtil.getCurrTimestamp());
-        invoiceService.create(invoice);
+        mv.addObject("invoiceOk", true);
+        mv.addObject("newInvoice", invoiceService.create(invoice));
         return mv;
     }
 }

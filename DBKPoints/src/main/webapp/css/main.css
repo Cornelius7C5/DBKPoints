@@ -12,27 +12,27 @@ body {
 #wrapper {
 	width: 900px;
 	color: black;
-	border-left: 2px solid red;
-	border-right: 2px solid red;
+	border-left: 2px solid maroon;
+	border-right: 2px solid maroon;
+	padding: 10px;
 }
 
-#wrapper,#content,#footer,#header {
-/* 	width: 850px; */
+#wrapper,#content,#footer,#header { /* 	width: 850px; */
 	margin: 0 auto;
 }
 
-td a:visited,td a:link,td a:hover,td a:active {
+td a:visited,td a:link,td a:active {
 	text-decoration: none;
 	color: black;
 	background-color: transparent;
 }
 
 a:link {
-	color: red;
+	color: white;
 }
 
 a:visited {
-	color: #aa0000;
+	color: white;
 }
 
 a:hover {
@@ -57,9 +57,63 @@ tr {
 }
 
 tr:nth-child(odd) {
-	background: #fee
+	background: #dcc
 }
 
 th {
-	background-color: #eee;
+	padding: 0 5px;
+	color: white;
+	background-color: maroon;
+	border: 2px maroon solid
+}
+
+#footer {
+	margin-top: 40px;
+	text-align: center;
+	border: 1px marron solid;
+	background-color: maroon;
+	padding: 5px 0;
+	color: white;
+}
+
+#header {
+	background-color: maroon;
+	color: white;
+	background-image: url(http://lorempixel.com/900/200/technics);
+}
+
+#header p {
+	text-align: right;
+	padding-right: 10px;
+}
+
+input {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d60404), color-stop(1, #a30505) );
+	background: -moz-linear-gradient(center top, #d60404 5%, #a30505 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d60404', endColorstr='#a30505' );
+	background-color: #d60404;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #780000;
+	display: inline-block;
+	color: #ffffff;
+	font-family: arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 24px;
+	text-decoration: none;
+	text-shadow: 1px 1px 0px #000000;
+}
+
+input:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a30505), color-stop(1, #d60404) );
+	background: -moz-linear-gradient(center top, #a30505 5%, #d60404 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a30505', endColorstr='#d60404' );
+	background-color: #a30505;
+}
+
+input:active {
+	position: relative;
+	top: 1px;
 }

@@ -32,7 +32,7 @@
     <tr>
       <td><a href="<c:url value="/order/${o.id_o}"/>">${o.date}</a></td>
       <td><a href="<c:url value="/order/${o.id_o}"/>">${o.salePoint.name}</a></td>
-      <td><a href="<c:url value="/order/${o.id_o}"/>"> <c:if test="${!o.seller.id_u==o.buyer.id_u}">
+      <td><a href="<c:url value="/order/${o.id_o}"/>"> <c:if test="${!(o.seller.id_u==o.buyer.id_u)}">
       ${o.seller.name}
       </c:if> <c:if test="${o.seller.id_u==o.buyer.id_u}">
       INTERNET

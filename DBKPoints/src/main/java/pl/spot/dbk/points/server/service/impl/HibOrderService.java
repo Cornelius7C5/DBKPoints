@@ -63,7 +63,7 @@ public class HibOrderService implements OrderService {
     public void cancel(int order_id) {
         Order o = get(order_id);
         o.setStatus(statusService.getCancelled());
-
+        session().save(o);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class HibOrderService implements OrderService {
     public void changeStatus(int id_o, int status) {
         Order o = (Order) session().get(Order.class, id_o);
         o.setStatus(statusService.get(status));
-        // session().save(o);
+        session().save(o);
 
     }
 

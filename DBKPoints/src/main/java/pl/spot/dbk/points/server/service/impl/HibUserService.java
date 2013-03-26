@@ -80,10 +80,11 @@ public class HibUserService implements UserService {
     public int getPoints(Object id) {
         User u = (User) session().get(User.class, new Integer(id.toString()));
         int sum = 0;
-        for (Invoice i : u.getInvoices()) {
-            sum += i.getAmount() + i.getExtra();
+        if (u != null) {
+            for (Invoice i : u.getInvoices()) {
+                sum += i.getAmount() + i.getExtra();
+            }
         }
         return sum;
     }
-
 }

@@ -13,7 +13,7 @@
     if (u.isAdmin()) {}
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Użytkownik -</title>
+<title>Użytkownik - Edytuj</title>
 </head>
 <body>
   <table>

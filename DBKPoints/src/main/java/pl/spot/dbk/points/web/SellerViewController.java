@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.spot.dbk.points.Constants;
 import pl.spot.dbk.points.server.hib.Invoice;
 import pl.spot.dbk.points.server.hib.User;
-import pl.spot.dbk.points.server.service.InvoiceService;
 import pl.spot.dbk.points.server.service.SalePointService;
 import pl.spot.dbk.points.server.service.UserService;
 
@@ -22,8 +21,6 @@ import pl.spot.dbk.points.server.service.UserService;
 public class SellerViewController {
     @Autowired
     private SalePointService spService;
-    @Autowired
-    private InvoiceService invoiceService;
     @Autowired
     UserService userService;
 
@@ -52,11 +49,15 @@ public class SellerViewController {
         int id = new Integer(req.getParameter("id"));
         int points = userService.getPoints(id);
         User u = userService.get(id);
-
-        mv.addObject("points", points);
-        mv.addObject("avPoints", points - u.getBlocked_points());
-        mv.addObject("blPoints", u.getBlocked_points());
-        session.setAttribute("cso", u);
+        if (u == null) {
+            session.setAttribute("err", true);
+            session.setAttribute("errMess", "Brak użytkownika - wpisano zły id");
+        } else {
+            mv.addObject("points", points);
+            mv.addObject("avPoints", points - u.getBlocked_points());
+            mv.addObject("blPoints", u.getBlocked_points());
+            session.setAttribute("cso", u);
+        }
         mv.addObject("add", false);
         return mv;
     }
@@ -69,10 +70,12 @@ public class SellerViewController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView prepareNewSaleView() {
+    public ModelAndView prepareNewSaleView(HttpSession session) {
         ModelAndView mv = new ModelAndView(Constants.SELLER + "main");
         mv.addObject("add", true);
         mv.addObject("sps", spService.list());
+        User u = (User) session.getAttribute(Constants.USER);
+        mv.addObject("hello", u.getName() + " " + u.getSurname());
         return mv;
     }
 

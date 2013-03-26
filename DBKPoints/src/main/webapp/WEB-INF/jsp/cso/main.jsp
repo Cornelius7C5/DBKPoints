@@ -6,10 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <html>
 <head>
-<title></title>
+<title>Sprzedaż</title>
 <meta name="section" content="About" />
 </head>
 <body>
+  <c:if test="${invoiceOk}">
+  Dodano fakturę ${newInvoice.id_i} na kwotę: ${newInvoice.amount} + extra: ${newInvoice.extra}
+  </c:if>
   <c:if test="${ok}">
     <c:out value="${u.role.name} "></c:out>
     <c:out value="${u.name} ${u.surname}"></c:out>
@@ -20,19 +23,15 @@
   <c:if test="${!add}">
     <table>
       <tr>
-        <td>
-          <a href="<c:url value="/cso/add"></c:url>">Sprzedaże</a>
-        </td>
+        <td><a href="<c:url value="/cso/add"></c:url>">Sprzedaże</a></td>
       </tr>
       <tr>
-        <td>
-          <a href="users">Nowy użytkownik</a>
-        </td>
+        <td><a href="users">Nowy użytkownik</a></td>
       </tr>
       <tr>
-        <td>
-          <a href="orders">Zamówienia</a>
-        </td>
+        <c:url value="/admin/list?type=%2forder%2f" var="orderUrl">
+        </c:url>
+        <td><a href='${orderUrl}'>Zamówienia</a></td>
       </tr>
     </table>
   </c:if>
@@ -44,6 +43,5 @@
     <input type="text" name="id">
     <input type="submit" value="Sprawdź" name="check">
   </form:form>
-  
 </body>
 </html>
