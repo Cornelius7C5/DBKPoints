@@ -10,20 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.spot.dbk.points.MetaObject;
 import pl.spot.dbk.points.server.hib.Invoice;
 import pl.spot.dbk.points.server.service.InvoiceService;
-import pl.spot.dbk.points.server.service.UserService;
 
 @Transactional
 public class HibInvoiceService implements InvoiceService {
     @Autowired
     private SessionFactory sessionFactory;
-    @Autowired
-    private UserService userService;
 
     public Session session() {
         return sessionFactory.getCurrentSession();
     }
-
-    
 
     @Override
     public void update(Invoice invoice) {
@@ -60,7 +55,5 @@ public class HibInvoiceService implements InvoiceService {
     public Invoice get(int id) {
         return (Invoice) session().get(Invoice.class, id);
     }
-
-   
 
 }

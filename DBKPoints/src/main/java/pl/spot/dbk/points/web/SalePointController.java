@@ -15,11 +15,9 @@ import pl.spot.dbk.points.server.hib.SalePoint;
 import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.SalePointService;
 
-/**
- * Adding new SalePoints
- * @author K.Olejniczak
- *
- */
+/** Adding new SalePoints
+ * 
+ * @author K.Olejniczak */
 @Controller
 @RequestMapping(value = Constants.SP + "**")
 public class SalePointController {

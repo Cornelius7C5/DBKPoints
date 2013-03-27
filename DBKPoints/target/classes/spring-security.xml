@@ -9,10 +9,15 @@
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <!-- Spring Security -->
+    <http
+        security="none"
+        pattern="/login/**">
+    </http>
     <http auto-config="true">
         <intercept-url
             pattern="/**"
             access="ROLE_USER,ROLE_ADMINISTRATOR,ROLE_UCZESTNIK,ROLE_SPRZEDAWCA" />
+
         <form-login
             authentication-failure-url="/login/failed"
             default-target-url="/login/success"

@@ -58,7 +58,7 @@ public class AdminViewController {
         ModelAndView mv = new ModelAndView("redirect:" + Constants.USER + "main");
         User u = (User) session.getAttribute(Constants.USER);
         mv.addObject("hello", u.getName() + " " + u.getSurname());
-        mv.addObject("add",true);
+        mv.addObject("add", true);
         return mv;
     }
 

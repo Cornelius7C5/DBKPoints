@@ -16,11 +16,9 @@ import pl.spot.dbk.points.server.hib.User;
 import pl.spot.dbk.points.server.service.OrderService;
 import pl.spot.dbk.points.server.service.StatusService;
 
-/**
- * Adding and managing orders
- * @author K.Olejniczak
- *
- */
+/** Adding and managing orders
+ * 
+ * @author K.Olejniczak */
 @Controller
 @RequestMapping(value = Constants.ORDER + "**")
 public class OrderController {
@@ -44,7 +42,7 @@ public class OrderController {
     public ModelAndView prepareSingleOrderView(@PathVariable("id") int id, HttpServletRequest req, HttpSession session) {
         ModelAndView mv = new ModelAndView(Constants.ORDER + "edit");
         Order order = orderService.get(id);
-        
+
         mv.addObject("order", order);
         mv.addObject("statuses", statusService.list());
         User u = (User) session.getAttribute(Constants.USER);
