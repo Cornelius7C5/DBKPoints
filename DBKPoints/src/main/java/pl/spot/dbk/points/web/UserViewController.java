@@ -64,7 +64,7 @@ public class UserViewController {
             buyer = u;
             mv.addObject("hello", u.getName() + " " + u.getSurname());
         }
-        if ((Boolean) session.getAttribute("err")) {
+        if (session.getAttribute("err") != null) {
             session.getAttribute("err");
             session.getAttribute("errMess");
             mv.addObject("err", session.getAttribute("err"));
