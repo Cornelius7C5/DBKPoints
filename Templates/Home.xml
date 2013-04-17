@@ -1,0 +1,55 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="0" measuredH="0" mockupW="0" mockupH="0">
+  <controls>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="836" y="116" w="-1" h="-1" measuredW="168" measuredH="21" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Zalogowany%20jako%3A%20Ktokolwiek</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::VRule" x="257" y="110" w="-1" h="707" measuredW="10" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13576743</color>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::VRule" x="1017" y="110" w="-1" h="707" measuredW="10" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13576743</color>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Icon" x="267" y="116" w="-1" h="-1" measuredW="48" measuredH="48" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>GearIcon%7Clarge</icon>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="315" y="137" w="-1" h="-1" measuredW="46" measuredH="28" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>DBK</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::TextArea" x="267" y="792" w="750" h="25" measuredW="200" measuredH="140" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>center</align>
+        <text>Made%20by%3A%20KO</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::TextInput" x="521" y="407" w="243" h="-1" measuredW="79" measuredH="27" zOrder="6" locked="false" isInGroup="-1"/>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Label" x="521" y="386" w="104" h="21" measuredW="55" measuredH="21" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Nr%20karty%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="521" y="446" w="84" h="21" measuredW="44" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Has%u0142o%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::TextInput" x="521" y="467" w="243" h="-1" measuredW="79" measuredH="27" zOrder="9" locked="false" isInGroup="-1"/>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Label" x="590" y="348" w="-1" h="-1" measuredW="104" measuredH="28" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>20</size>
+        <text>Zaloguj%20si%u0119</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
